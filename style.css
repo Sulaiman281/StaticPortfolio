@@ -200,34 +200,74 @@ h1, h2, h3 {
   gap: 24px;
   justify-content: center;
 }
+
 .feedback-card {
   background: var(--card);
   border-radius: var(--radius);
   padding: 18px 14px;
-  width: 260px;
+  width: 320px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
   color: var(--text2);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
 }
+
+.feedback-card .client-profile {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #222;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.feedback-card .feedback-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+}
+
 .feedback-card .client {
   color: var(--accent);
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
+  font-size: 1.08em;
 }
+
 .feedback-card .stars {
   color: gold;
   font-size: 1.1em;
   margin-bottom: 0.5em;
 }
-.feedback-card .client-profile {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.5em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+
+.feedback-card .feedback-text {
+  margin-top: 0.5em;
+  color: var(--text2);
+  font-size: 1em;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .feedback-card {
+    flex-direction: column;
+    align-items: center;
+    width: 98vw;
+    min-width: 0;
+    max-width: 98vw;
+    padding: 14px 6px;
+  }
+  .feedback-card .feedback-meta {
+    align-items: center;
+    width: 100%;
+  }
 }
 footer {
   margin: 64px 0 24px 0;

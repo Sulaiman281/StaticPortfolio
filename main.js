@@ -108,12 +108,16 @@ function renderFeedbacks(data) {
         el("div", { class: "feedbacks-list" },
             ...data.feedbacks.map(f =>
                 el("div", { class: "feedback-card" },
-                    f.clientProfile
-                        ? el("img", { src: f.clientProfile, alt: f.clientName, class: "client-profile" })
-                        : null,
-                    el("div", { class: "client" }, f.clientName),
-                    el("div", { class: "stars" }, "★".repeat(f.rating) + "☆".repeat(5 - f.rating)),
-                    el("div", {}, f.feedback)
+                    el("img", {
+                        src: f.clientProfile,
+                        alt: f.clientName,
+                        class: "client-profile"
+                    }),
+                    el("div", { class: "feedback-meta" },
+                        el("div", { class: "client" }, f.clientName),
+                        el("div", { class: "stars" }, "★".repeat(f.rating) + "☆".repeat(5 - f.rating)),
+                        el("div", { class: "feedback-text" }, f.feedback)
+                    )
                 )
             )
         )

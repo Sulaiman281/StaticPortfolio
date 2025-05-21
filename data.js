@@ -122,7 +122,7 @@ window.siteData = {
     feedbacks: [
         {
             clientName: "donpablo2022",
-            clientProfile: "images/no-profile", // Add this line (use actual image path)
+            clientProfile: "images/no-profile.png", // Add this line (use actual image path)
             feedback: "perfect! will definitely recommend",
             rating: 5
         },
