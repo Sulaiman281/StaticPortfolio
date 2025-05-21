@@ -93,23 +93,53 @@ window.siteData = {
             picture: "images/profile_pic.png",
             role: "Lead Game Developer"
         },
+        {
+            name: "Naima Ghulam Muhammad",
+            picture: "images/no-profile.png", // Add this line (use actual image path)
+            role: "Blockchain | Mern Stack Developer"
+        },
+        {
+            name: "Mahen Gulam Muhammad",
+            picture: "images/no-profile.png", // Add this line (use actual image path)
+            role: "Junior UI/UX Designer"
+        },
+        {
+            name: "Fahad Burfat",
+            picture: "images/no-profile.png", // Add this line (use actual image path)
+            role: "3D Artist"
+        },
+        {
+            name: "Muhammad Uzair",
+            picture: "images/no-profile.png", // Add this line (use actual image path)
+            role: "Senior Graphic Designer"
+        },
+        {
+            name: "Najeeb Ahmed",
+            picture: "images/no-profile.png", // Add this line (use actual image path)
+            role: "Electronics | AI Engineer"
+        }
     ],
     feedbacks: [
         {
-            clientName: "John Doe",
-            clientProfile: "images/client1.png", // Add this line (use actual image path)
-            feedback: "Great work, delivered on time and exceeded expectations!",
+            clientName: "donpablo2022",
+            clientProfile: "images/no-profile", // Add this line (use actual image path)
+            feedback: "perfect! will definitely recommend",
             rating: 5
         },
         {
-            clientName: "Jane Smith",
-            clientProfile: "images/client2.png", // Add this line (use actual image path)
-            feedback: "Excellent communication and top-notch skills.",
+            clientName: "noemialvarez174",
+            clientProfile: "images/no-profile.png", // Add this line (use actual image path)
+            feedback: "Nice working with this Unitiy expert!",
             rating: 4
-        }
-        // ...add more feedbacks...
+        },
+        {
+            clientName: "adnan1160",
+            clientProfile: "images/no-profile.png", // Add this line (use actual image path)
+            feedback: "Amazing seller. If you need help I promise you this is the man to ask, Accommodated a shifting timeline and delivered with a level of professionalism that is rarely found on fiverr. Would repeat without hesitation.",
+            rating: 5
+        },
     ],
-    
+
     footer: {
         contacts: [
             {
