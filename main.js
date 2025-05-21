@@ -1,154 +1,169 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Profile image hover
-    const img = document.getElementById('profile-img');
-    img.addEventListener('mouseenter', () => img.src = 'images/pic.png');
-    img.addEventListener('mouseleave', () => img.src = 'images/pic_bw.png');
-
-    // Navigation switching
-    const navItems = document.querySelectorAll('.nav-item');
-    const mainContent = document.getElementById('main-content');
-
-    function renderAbout(data) {
-        return `
-      <section class="about-section">
-      
-        <h1>${data.title}</h1>
-        <h2>${data.subtitle}</h2>
-        <p>${data.description}</p>
-        
-        <div class="contact-links">
-          ${data.contacts.map(c => `
-            <a href="${c.url}" target="_blank" title="${c.type}">
-              <img src="${c.icon}" alt="${c.type}"> ${c.label}
-            </a>
-          `).join('')}
-        </div>
-        <div class="ratings">
-          <span>
-            <a href="https://www.fiverr.com/syedsulaimans7?public_mode=true" target="_blank" style="color: #7ecfff; text-decoration: none;">
-              Fiverr
-            </a>:
-          </span> 50 jobs with 4.3★ positive rating
-          <span>
-            <a href="https://www.upwork.com/freelancers/~01c772b1ea5a88ed4f?mp_source=share" target="_blank" style="color: #7ecfff; text-decoration: none;">
-              Upwork
-            </a>:
-          </span> 3 jobs with 5★ positive rating
-        </div>
-        <a class="download-resume-btn" href="${data.resumeUrl}" target="_blank" rel="noopener">
-          Download Resume
-        </a>
-      </section>
-    `;
+function el(tag, attrs = {}, ...children) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+        if (k === "class") e.className = v;
+        else if (k === "style") e.style.cssText = v;
+        else if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+        else if (k === "html") e.innerHTML = v;
+        else e.setAttribute(k, v);
     }
-
-    function renderServices(data) {
-        return `
-      <section class="services-section">
-        <h2>${data.title}</h2>
-        <div class="service-list">
-          ${data.items.map(item => `
-            <div class="service-card">
-              <img class="service-icon" src="${item.icon}" alt="${item.name}">
-              <div class="service-details">
-                <div class="service-title">${item.name}</div>
-                <div class="service-desc">${item.description}</div>
-                <div class="skill-bar-bg">
-                  <div class="skill-bar-fill" style="width:${item.skill}%"></div>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </section>
-    `;
+    for (const c of children) {
+        if (c == null) continue;
+        if (typeof c === "string") e.appendChild(document.createTextNode(c));
+        else if (c instanceof Node) e.appendChild(c);
     }
+    return e;
+}
 
-    function renderPortfolio(data) {
-        return `
-      <section class="portfolio-section">
-        <h2>${data.title}</h2>
-        <p>${data.description}</p>
-        <div class="portfolio-projects">
-          ${data.projects.map(project => `
-            <div class="project-card">
-              <h3>${project.name}</h3>
-              <span class="platform">${project.platform}</span>
-              ${project.hasEmbed && project.embedGame ? project.embedGame : `
-                <a href="${project.link}" target="_blank">View Project</a>
-              `}
-            </div>
-          `).join('')}
-        </div>
-      </section>
-    `;
-    }
+function renderHero(data) {
+    return el("section", { class: "hero", id: "hero" },
+        el("div", { class: "hero-img-wrap" },
+            el("img", {
+                src: "images/pic_bw.png",
+                alt: data.about.title,
+                onmouseenter: e => e.currentTarget.src = "images/pic.png",
+                onmouseleave: e => e.currentTarget.src = "images/pic_bw.png"
+            })
+        ),
+        el("div", { class: "hero-content" },
+            el("h1", {}, data.about.title),
+            el("div", { class: "subtitle" }, data.about.subtitle),
+            el("div", { class: "desc", html: data.about.description }),
+            el("a", { href: data.about.resumeUrl, class: "resume-btn", target: "_blank" }, "View Resume")
+        )
+    );
+}
 
-    function renderFeatured(data) {
-        return `
-      <section class="featured-section">
-        <h2>${data.title}</h2>
-        <p>${data.description}</p>
-        <div class="featured-projects">
-          ${data.projects.map(project => `
-            <div class="featured-card">
-              <h3>${project.title}</h3>
-              <p>${project.description}</p>
-              ${project.embedData ? project.embedData : `<a href="${project.link}" target="_blank">View Project</a>`}
-            </div>
-          `).join('')}
-        </div>
-      </section>
-    `;
-    }
+function renderServices(data) {
+    return el("section", { id: "services" },
+        el("h2", {}, data.services.title),
+        el("div", { class: "services-list" },
+            ...data.services.items.map(s =>
+                el("div", { class: "service-card" },
+                    el("img", { src: s.icon, alt: s.name }),
+                    el("h3", {}, s.name),
+                    el("div", {}, s.description),
+                    el("div", { class: "skill-bar" },
+                        el("div", {
+                            class: "skill-bar-inner",
+                            style: `width:${s.skill}%;`
+                        })
+                    )
+                )
+            )
+        )
+    );
+}
 
-    function showSection(section) {
-        navItems.forEach(item => item.classList.remove('active'));
-        document.querySelector(`.nav-item[data-section="${section}"]`).classList.add('active');
-        let html = '';
-        switch (section) {
-            case 'about':
-                html = renderAbout(window.siteData.about);
-                break;
-            case 'services':
-                html = renderServices(window.siteData.services);
-                break;
-            case 'portfolio':
-                html = renderPortfolio(window.siteData.portfolio);
-                break;
-            case 'featured':
-                html = renderFeatured(window.siteData.featured);
-                break;
-            default:
-                html = '';
-        }
-        mainContent.innerHTML = html;
-    }
+function renderPortfolio(data) {
+    return el("section", { id: "portfolio" },
+        el("h2", {}, data.portfolio.title),
+        el("div", { class: "portfolio-list" },
+            ...data.portfolio.projects.map(p =>
+                el("div", { class: "portfolio-card" },
+                    p.hasEmbed ? el("div", { html: p.embedGame }) : null,
+                    el("h3", {}, p.name),
+                    el("div", { class: "platform" }, p.platform),
+                    el("a", { href: p.link, target: "_blank" }, "Play / View")
+                )
+            )
+        )
+    );
+}
 
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            showSection(item.getAttribute('data-section'));
-        });
+function renderFeatured(data) {
+    return el("section", { id: "featured" },
+        el("h2", {}, data.featured.title),
+        el("div", { class: "featured-list" },
+            ...data.featured.projects.map(p =>
+                el("div", { class: "featured-card" },
+                    el("div", { html: p.embedData }),
+                    el("h3", {}, p.title),
+                    el("div", {}, p.description),
+                    el("a", { href: p.link, target: "_blank" }, "View Project")
+                )
+            )
+        )
+    );
+}
+
+function renderTeam(data) {
+    return el("section", { id: "team" },
+        el("h2", {}, "Team"),
+        el("div", { class: "team-list" },
+            ...data.team.map(m =>
+                el("div", { class: "team-card" },
+                    el("img", { src: m.picture, alt: m.name }),
+                    el("div", { class: "name" }, m.name),
+                    el("div", { class: "role" }, m.role)
+                )
+            )
+        )
+    );
+}
+
+function renderFeedbacks(data) {
+    return el("section", { id: "feedbacks" },
+        el("h2", {}, "Feedbacks"),
+        el("div", { class: "feedbacks-list" },
+            ...data.feedbacks.map(f =>
+                el("div", { class: "feedback-card" },
+                    f.clientProfile
+                        ? el("img", { src: f.clientProfile, alt: f.clientName, class: "client-profile" })
+                        : null,
+                    el("div", { class: "client" }, f.clientName),
+                    el("div", { class: "stars" }, "★".repeat(f.rating) + "☆".repeat(5 - f.rating)),
+                    el("div", {}, f.feedback)
+                )
+            )
+        )
+    );
+}
+
+function renderFooter(data) {
+    return el("footer", {},
+        el("div", { class: "footer-contacts" },
+            ...data.footer.contacts.map(c =>
+                el("a", { href: c.url, target: "_blank" },
+                    el("img", { src: c.icon, alt: c.type }),
+                    c.label
+                )
+            )
+        ),
+        el("div", { class: "footer-ratings" },
+            ...data.footer.ratings.map(r =>
+                el("span", {},
+                    el("a", { href: r.profileLink, target: "_blank" }, r.platform),
+                    " – ", r.text
+                )
+            )
+        ),
+        el("div", { style: "color:#444;margin-top:1em;" }, "© " + new Date().getFullYear() + " WitShells. All rights reserved.")
+    );
+}
+
+function renderPage(data) {
+    const app = document.getElementById("app");
+    app.append(
+        renderHero(data),
+        renderServices(data),
+        renderPortfolio(data),
+        renderFeatured(data),
+        renderTeam(data),
+        renderFeedbacks(data),
+        renderFooter(data)
+    );
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderPage(window.siteData);
+
+    // Rectangle cursor effect
+    const rect = document.createElement("div");
+    rect.className = "cursor-rect";
+    document.body.appendChild(rect);
+
+    document.addEventListener("mousemove", e => {
+        rect.style.transform = `translate(${e.clientX - 30}px, ${e.clientY - 18}px)`;
     });
-
-    // Show about by default
-    showSection('about');
-
-    // Rocket cursor (your existing code)
-    const rocket = document.getElementById('rocket-cursor');
-    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-    let rocketX = mouseX, rocketY = mouseY;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateRocket() {
-        rocketX += (mouseX - rocketX) * 0.18;
-        rocketY += (mouseY - rocketY) * 0.18;
-        rocket.style.transform = `translate(-50%, -50%) translate(${rocketX}px, ${rocketY}px)`;
-        requestAnimationFrame(animateRocket);
-    }
-    animateRocket();
 });

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Article - WitShells</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="main-nav">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </nav>
+    <main id="blog-article"></main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Get ?id= from URL
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        fetch('index.json')
+            .then(res => res.json())
+            .then(blogs => {
+                if (!id || isNaN(id) || !blogs[id]) {
+                    window.location.href = 'blogs.html';
+                    return;
+                }
+                const blog = blogs[id];
+                fetch('blogs/' + blog.file)
+                    .then(res => res.text())
+                    .then(md => {
+                        document.title = blog.title + ' - WitShells';
+                        document.getElementById('blog-article').innerHTML = `<h1>${blog.title}</h1>` + marked.parse(md);
+                    });
+            });
+    </script>
+</body>
+
+</html>

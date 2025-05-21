@@ -1,4 +1,6 @@
 window.siteData = {
+    siteTitle: "WitShells",
+    favicon: "images/favicon.png",
     about: {
         title: "Syed Suleman Shah",
         subtitle: "Full-time Indie Game Developer",
@@ -7,48 +9,6 @@ window.siteData = {
     Let's build innovative, high-performance games together!
     `,
         resumeUrl: "https://sulaiman281.github.io/Resume/",
-        contacts: [
-            {
-                type: "WhatsApp",
-                url: "https://wa.me/9203093023289",
-                icon: "images/icon-phone.png",
-                label: "+92 0309 3023289"
-            },
-            {
-                type: "Email",
-                url: "mailto:sayedsulaiman607@gmail.com",
-                icon: "images/icon-email.png",
-                label: "sayedsulaiman607@gmail.com"
-            },
-            {
-                type: "LinkedIn",
-                url: "https://www.linkedin.com/in/syed-suleman-shah/",
-                icon: "images/linkedin logo.png",
-                label: "LinkedIn"
-            },
-            {
-                type: "Facebook",
-                url: "https://web.facebook.com/arif.sayad.39",
-                icon: "images/facebook logo.png",
-                label: "Facebook"
-            },
-            {
-                type: "Instagram",
-                url: "https://www.instagram.com/witshells/",
-                icon: "images/instagram logo.png",
-                label: "Instagram"
-            }
-        ],
-        ratings: [
-            {
-                platform: "Fiverr",
-                text: "50 jobs with 4.3★ positive rating"
-            },
-            {
-                platform: "Upwork",
-                text: "3 jobs with 5★ positive rating"
-            }
-        ]
     },
     services: {
         title: "Services",
@@ -74,8 +34,8 @@ window.siteData = {
         ]
     },
     portfolio: {
-        title: "Portfolio Projects",
-        description: "These Projects are made by me. I am a full-time indie game developer.",
+        title: "Portfolio Games",
+        description: "To Showcase My Technical Skills and Projects",
         projects: [
             {
                 name: "VR Cricket Duel",
@@ -84,20 +44,6 @@ window.siteData = {
                 embedGame: `<iframe src="https://yourwebglgameurl.com" width="640" height="480" frameborder="0" allowfullscreen></iframe>`,
                 link: "https://yourwebglgameurl.com"
             },
-            //   {
-            //     name: "VR Adventure",
-            //     platform: "VR",
-            //     hasEmbed: false,
-            //     embedGame: "",
-            //     link: "https://yourvrproject.com"
-            //   },
-            //   {
-            //     name: "Puzzle Quest",
-            //     platform: "Android",
-            //     hasEmbed: false,
-            //     embedGame: "",
-            //     link: "https://play.google.com/store/apps/details?id=yourgame"
-            //   }
         ]
     },
     featured: {
@@ -138,6 +84,75 @@ window.siteData = {
                 embedSourceType: "youtube",
                 link: "https://www.youtube.com/watch?v=GWuH44ZF3K4",
                 embedData: `<iframe width="500" height="281" src="https://www.youtube.com/embed/GWuH44ZF3K4" title="Aldrago&#39;s M-Mission GamePlay Server made by me samp server" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            }
+        ]
+    },
+    team: [
+        {
+            name: "Syed Suleman Shah",
+            picture: "images/profile_pic.png",
+            role: "Lead Game Developer"
+        },
+    ],
+    feedbacks: [
+        {
+            clientName: "John Doe",
+            clientProfile: "images/client1.png", // Add this line (use actual image path)
+            feedback: "Great work, delivered on time and exceeded expectations!",
+            rating: 5
+        },
+        {
+            clientName: "Jane Smith",
+            clientProfile: "images/client2.png", // Add this line (use actual image path)
+            feedback: "Excellent communication and top-notch skills.",
+            rating: 4
+        }
+        // ...add more feedbacks...
+    ],
+    
+    footer: {
+        contacts: [
+            {
+                type: "WhatsApp",
+                url: "https://wa.me/9203093023289",
+                icon: "images/icon-phone.png",
+                label: "+92 0309 3023289"
+            },
+            {
+                type: "Email",
+                url: "mailto:sayedsulaiman607@gmail.com",
+                icon: "images/icon-email.png",
+                label: "sayedsulaiman607@gmail.com"
+            },
+            {
+                type: "LinkedIn",
+                url: "https://www.linkedin.com/in/syed-suleman-shah/",
+                icon: "images/linkedin logo.png",
+                label: "LinkedIn"
+            },
+            {
+                type: "Facebook",
+                url: "https://web.facebook.com/arif.sayad.39",
+                icon: "images/facebook logo.png",
+                label: "Facebook"
+            },
+            {
+                type: "Instagram",
+                url: "https://www.instagram.com/witshells/",
+                icon: "images/instagram logo.png",
+                label: "Instagram"
+            }
+        ],
+        ratings: [
+            {
+                platform: "Fiverr",
+                profileLink: "https://www.fiverr.com/s/Q7zyqqP",
+                text: "50 jobs with 4.3★ positive rating"
+            },
+            {
+                platform: "Upwork",
+                profileLink: "https://www.upwork.com/freelancers/~01c772b1ea5a88ed4f?mp_source=share",
+                text: "3 jobs with 5★ positive rating"
             }
         ]
     }

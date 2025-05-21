@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - WitShells</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+  <main id="blog-list"></main>
+  <script>
+    fetch('index.json')
+      .then(res => res.json())
+      .then(blogs => {
+        const list = document.createElement('ul');
+        blogs.forEach((blog, i) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `blog.html?id=${i}`;
+          a.textContent = blog.title;
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+        document.getElementById('blog-list').appendChild(list);
+      });
+  </script>
+</body>
+</html>
