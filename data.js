@@ -12,7 +12,7 @@ window.siteData = {
     },
     services: {
         title: "Services",
-        items: [
+        _items: [
             {
                 name: "Game Development",
                 description: "Android, VR, WebGL platforms. High performance, optimized code, and engaging gameplay.",
@@ -26,12 +26,25 @@ window.siteData = {
                 skill: 90
             },
             {
-                name: "Teaching",
-                description: "Game development or backend programming tailored to your needs. Request custom content or skill-building!",
+                name: "Mentorship & Teaching",
+                description: "Unity 3D game development, C#, and game design. Personalized guidance for all levels.",
                 icon: "images/team.png",
                 skill: 85
-            }
-        ]
+            },
+            {
+                name: "Blockchain Development",
+                description: "Smart contracts, decentralized applications, and blockchain integration.",
+                icon: "images/blockchain.png",
+                skill: 80
+            },
+
+        ],
+        get items() {
+            return this._items;
+        },
+        set items(value) {
+            this._items = value;
+        },
     },
     portfolio: {
         title: "Portfolio Games",
@@ -41,7 +54,7 @@ window.siteData = {
                 name: "VR Cricket Duel",
                 platform: "WebGL VR & Mobile",
                 hasEmbed: true,
-                embedGame: `<iframe src="https://yourwebglgameurl.com" width="640" height="480" frameborder="0" allowfullscreen></iframe>`,
+                embedGame: `<iframe src="https://yourwebglgameurl.com" width="1080" height="720" frameborder="0" allowfullscreen></iframe>`,
                 link: "https://yourwebglgameurl.com"
             },
         ]
@@ -90,34 +103,40 @@ window.siteData = {
     team: [
         {
             name: "Syed Suleman Shah",
-            picture: "images/profile_pic.png",
-            role: "Lead Game Developer"
+            picture: "images/pic11.png",
+            role: "Unity Game Developer",
+            portfolio: "https://sulaiman281.github.io/Resume/"
         },
         {
             name: "Naima Ghulam Muhammad",
-            picture: "images/no-profile.png", // Add this line (use actual image path)
-            role: "Blockchain | Mern Stack Developer"
+            picture: "images/naima-pic.jpg",
+            role: "Blockchain | Mern Stack Developer",
+            portfolio: "https://github.com/NaimaGhulamMuhammad" // Example link, update as needed
         },
-        {
-            name: "Mahen Gulam Muhammad",
-            picture: "images/no-profile.png", // Add this line (use actual image path)
-            role: "Junior UI/UX Designer"
-        },
-        {
-            name: "Fahad Burfat",
-            picture: "images/no-profile.png", // Add this line (use actual image path)
-            role: "3D Artist"
-        },
-        {
-            name: "Muhammad Uzair",
-            picture: "images/no-profile.png", // Add this line (use actual image path)
-            role: "Senior Graphic Designer"
-        },
-        {
-            name: "Najeeb Ahmed",
-            picture: "images/no-profile.png", // Add this line (use actual image path)
-            role: "Electronics | AI Engineer"
-        }
+        // {
+        //     name: "Mahen Gulam Muhammad",
+        //     picture: "images/no-profile.png",
+        //     role: "Junior UI/UX Designer",
+        //     portfolio: "https://dribbble.com/mahengm" // Example link, update as needed
+        // },
+        // {
+        //     name: "Fahad Burfat",
+        //     picture: "images/no-profile.png",
+        //     role: "3D Artist",
+        //     portfolio: "https://artstation.com/fahadburfat" // Example link, update as needed
+        // },
+        // {
+        //     name: "Muhammad Uzair",
+        //     picture: "images/no-profile.png",
+        //     role: "Senior Graphic Designer",
+        //     portfolio: "https://behance.net/muhammaduzair" // Example link, update as needed
+        // },
+        // {
+        //     name: "Najeeb Ahmed",
+        //     picture: "images/no-profile.png",
+        //     role: "Electronics | AI Engineer",
+        //     portfolio: "https://github.com/najeebahmed" // Example link, update as needed
+        // }
     ],
     feedbacks: [
         {
@@ -130,7 +149,7 @@ window.siteData = {
             clientName: "noemialvarez174",
             clientProfile: "images/no-profile.png", // Add this line (use actual image path)
             feedback: "Nice working with this Unitiy expert!",
-            rating: 4
+            rating: 4.2
         },
         {
             clientName: "adnan1160",
@@ -138,6 +157,18 @@ window.siteData = {
             feedback: "Amazing seller. If you need help I promise you this is the man to ask, Accommodated a shifting timeline and delivered with a level of professionalism that is rarely found on fiverr. Would repeat without hesitation.",
             rating: 5
         },
+        {
+            clientName: "asad orabic",
+            clientProfile: "images/no-profile.png", // Add this line (use actual image path)
+            feedback: "I want to personally thank Mr. Syed for his exceptional expertise in Java and REST APIs. Having had the pleasure of working with him on one project and currently collaborating on another, I can attest to his remarkable dedication and hard work. I highly recommend him for any API solutions you may need",
+            rating: 5
+        },
+        {
+            clientName: "khalid",
+            clientProfile: "images/no-profile.png", // Add this line (use actual image path)
+            feedback: "Exceptional work! Delivered ahead of schedule with outstanding quality. Communication was clear and professional throughout. Highly recommend for anyone seeking top-notch results. Will definitely hire again!",
+            rating: 5
+        }
     ],
 
     footer: {

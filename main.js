@@ -78,9 +78,13 @@ function renderFeatured(data) {
             ...data.featured.projects.map(p =>
                 el("div", { class: "featured-card" },
                     el("div", { html: p.embedData }),
-                    el("h3", {}, p.title),
-                    el("div", {}, p.description),
-                    el("a", { href: p.link, target: "_blank" }, "View Project")
+                    el("a", {
+                        href: p.link,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "featured-title"
+                    }, p.title),
+                    el("div", { class: "desc" }, p.description)
                 )
             )
         )
@@ -94,7 +98,12 @@ function renderTeam(data) {
             ...data.team.map(m =>
                 el("div", { class: "team-card" },
                     el("img", { src: m.picture, alt: m.name }),
-                    el("div", { class: "name" }, m.name),
+                    el("a", {
+                        href: m.portfolio,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "team-name-link"
+                    }, m.name),
                     el("div", { class: "role" }, m.role)
                 )
             )
@@ -103,25 +112,121 @@ function renderTeam(data) {
 }
 
 function renderFeedbacks(data) {
-    return el("section", { id: "feedbacks" },
-        el("h2", {}, "Feedbacks"),
-        el("div", { class: "feedbacks-list" },
-            ...data.feedbacks.map(f =>
-                el("div", { class: "feedback-card" },
-                    el("img", {
-                        src: f.clientProfile,
-                        alt: f.clientName,
-                        class: "client-profile"
-                    }),
-                    el("div", { class: "feedback-meta" },
-                        el("div", { class: "client" }, f.clientName),
-                        el("div", { class: "stars" }, "★".repeat(f.rating) + "☆".repeat(5 - f.rating)),
-                        el("div", { class: "feedback-text" }, f.feedback)
-                    )
-                )
-            )
+    let current = 0;
+    let intervalId = null;
+    let animating = false;
+
+    const feedbacks = data.feedbacks;
+    const container = el("section", { id: "feedbacks" },
+        el("h2", {}, "Testimonials"),
+        el("div", { class: "testimonial-carousel" },
+            el("button", {
+                class: "testimonial-arrow left",
+                onclick: () => show(current - 1, "left")
+            }, "‹"),
+            el("div", { class: "testimonial-slide" }),
+            el("button", {
+                class: "testimonial-arrow right",
+                onclick: () => show(current + 1, "right")
+            }, "›")
         )
     );
+
+    const slide = container.querySelector(".testimonial-slide");
+
+    function createCard(f) {
+        return el("div", { class: "feedback-card" },
+            el("img", {
+                src: f.clientProfile,
+                alt: f.clientName,
+                class: "client-profile"
+            }),
+            el("div", { class: "feedback-meta" },
+                el("div", { class: "client" }, f.clientName),
+                el("div", { class: "stars" },
+                    "★".repeat(Math.round(f.rating)) +
+                    "☆".repeat(5 - Math.round(f.rating))
+                ),
+                el("div", { class: "feedback-text" }, f.feedback)
+            )
+        );
+    }
+
+    function show(idx, direction = "right") {
+        if (animating) return;
+        animating = true;
+        const next = (idx + feedbacks.length) % feedbacks.length;
+
+        // Prepare new card
+        const newCard = createCard(feedbacks[next]);
+        newCard.style.position = "absolute";
+        newCard.style.top = 0;
+        newCard.style.left = direction === "right" ? "100%" : "-100%";
+        newCard.style.width = "100%";
+        newCard.style.transition = "left 0.5s";
+
+        // Current card
+        const oldCard = slide.firstChild;
+        if (oldCard) {
+            oldCard.style.position = "absolute";
+            oldCard.style.top = 0;
+            oldCard.style.left = "0";
+            oldCard.style.width = "100%";
+            oldCard.style.transition = "left 0.5s";
+        }
+
+        slide.appendChild(newCard);
+
+        // Trigger reflow for transition
+        void newCard.offsetWidth;
+
+        // Animate
+        if (oldCard) oldCard.style.left = direction === "right" ? "-100%" : "100%";
+        newCard.style.left = "0";
+
+        setTimeout(() => {
+            if (oldCard) slide.removeChild(oldCard);
+            newCard.style.position = "";
+            newCard.style.width = "";
+            newCard.style.transition = "";
+            newCard.style.left = "";
+            animating = false;
+        }, 500);
+
+        current = next;
+    }
+
+    function startAuto() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(() => show(current + 1, "right"), 10000);
+    }
+
+    // Initial render
+    slide.style.position = "relative";
+    slide.style.minHeight = "220px";
+    slide.appendChild(createCard(feedbacks[current]));
+    startAuto();
+
+    // Pause auto-scroll on hover
+    container.addEventListener("mouseenter", () => clearInterval(intervalId));
+    container.addEventListener("mouseleave", startAuto);
+
+    // Optional: swipe gesture for mobile
+    let startX = null;
+    slide.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+    slide.addEventListener("touchend", e => {
+        if (startX == null) return;
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) {
+            if (dx > 0) show(current - 1, "left");
+            else show(current + 1, "right");
+        }
+        startX = null;
+    });
+
+    return container;
 }
 
 function renderFooter(data) {

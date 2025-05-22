@@ -1,5 +1,14 @@
 [
-  { "title": "How to Build Arcade Games", "file": "0.md" },
-  { "title": "Integrating Electronics with Games", "file": "1.md" },
-  { "title": "UI/UX for Game Developers", "file": "2.md" }
+  {
+    "title": "How to Build Arcade Games",
+    "file": "0.md"
+  },
+  {
+    "title": "Integrating Electronics with Games",
+    "file": "1.md"
+  },
+  {
+    "title": "UI/UX for Game Developers",
+    "file": "2.md"
+  }
 ]
