@@ -1,7 +1,7 @@
 :root {
-  --bg: transparent;
-  --bg2: #23262f;
-  --accent: #00ffd0;
+  --bg: #181a20;
+  --bg2: #22272e;
+  --accent: #2ADD89;
   --text: #f1f1f1;
   --text2: #b0b0b0;
   --card: #23262f;
@@ -14,7 +14,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   scroll-behavior: smooth;
@@ -52,7 +52,7 @@ h3 {
   flex-direction: row;
   align-items: center;
   text-align: left;
-  background: linear-gradient(120deg, #23262f 60%, #00ffd033 100%);
+  background: linear-gradient(120deg, #23262f 60%, #2ADD8933 100%);
   padding: 0;
   min-height: 320px;
 }
@@ -61,26 +61,26 @@ h3 {
   flex: 0 0 220px;
   height: 320px;
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  /* Center vertically */
   justify-content: center;
+  /* Center horizontally */
   overflow: visible;
-  /* Allow image to overflow, don't crop */
   border-radius: 0;
   background: transparent;
 }
 
 .hero-img-wrap img {
-  width: auto;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   max-width: none;
   object-fit: contain;
-  /* Show full image, don't crop */
   border: none;
   border-radius: 0;
   transition: opacity 0.3s;
   display: block;
-  transform: scaleX(-1);
-  /* Flip the image horizontally */
+  margin: 0 auto;
+  /* Center horizontally if needed */
 }
 
 .hero-content {
@@ -100,18 +100,6 @@ h3 {
 .hero .desc {
   color: var(--text2);
   margin-bottom: 1.5rem;
-}
-
-.hero .resume-btn {
-  display: inline-block;
-  padding: 0.6em 1.4em;
-  background: var(--accent);
-  color: #181a20;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 1rem;
-  transition: background 0.2s;
 }
 
 .hero .resume-btn:hover {
@@ -235,10 +223,11 @@ h3 {
   background-image:
     linear-gradient(#222, #222),
     /* inner background */
-    linear-gradient(135deg, #a259ff 0%, #fff 100%);
+    linear-gradient(135deg, #2ADD89 0%, #fff 100%);
   background-origin: border-box;
   background-clip: content-box, border-box;
-  box-shadow: 0 2px 16px #a259ff33;
+  box-shadow: 0 2px 16px #2ADD8944;
+  transition: transform 0.3s;
 }
 
 .team-card .role {
@@ -293,7 +282,7 @@ h3 {
 }
 
 .feedback-card .stars {
-  color: gold;
+  color: var(--accent);
   font-size: 1.1em;
   margin-bottom: 0.5em;
 }
@@ -415,7 +404,7 @@ body::after {
     transform 0.13s cubic-bezier(.22, 1, .36, 1),
     opacity 0.2s;
   opacity: 0.7;
-  box-shadow: 0 2px 16px #00ffd044;
+  box-shadow: 0 2px 16px #2ADD8944;
   mix-blend-mode: lighten;
 }
 
@@ -675,14 +664,17 @@ body::after {
   z-index: 2;
   opacity: 0.7;
 }
+
 .testimonial-arrow:hover {
   background: var(--accent);
   color: #181a20;
   opacity: 1;
 }
+
 .testimonial-arrow.left {
   left: 0;
 }
+
 .testimonial-arrow.right {
   right: 0;
 }
@@ -705,6 +697,7 @@ body::after {
     width: 98vw;
     margin: 0;
   }
+
   .testimonial-arrow {
     font-size: 1.5em;
     padding: 0 0.1em;

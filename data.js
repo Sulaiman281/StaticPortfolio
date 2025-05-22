@@ -2,13 +2,12 @@ window.siteData = {
     siteTitle: "WitShells",
     favicon: "images/favicon.png",
     about: {
-        title: "Syed Suleman Shah",
-        subtitle: "Full-time Indie Game Developer",
+        title: "WitShells",
+        subtitle: "Game Development & Creative Software Studio",
         description: `
-      Experienced Indie Game Developer specializing in mobile, VR, and WebGL games. I excel at backend development, scalable game architecture, and performance optimization. Skilled in Unity 3D, C#, and ASP.NET, I deliver high-quality, engaging games and robust backend solutions. My expertise ensures seamless gameplay, secure APIs, and efficient code. I am also passionate about teaching Unity 3D game development, helping others master game programming and design.<br><br>
-    Let's build innovative, high-performance games together!
-    `,
-        resumeUrl: "https://sulaiman281.github.io/Resume/",
+        WitShells is more than a name—it's a philosophy. "Wit" stands for intelligence, creativity, and sharp problem-solving. "Shells" represent the frameworks, platforms, and digital worlds we build to bring ideas to life. Together, WitShells means crafting smart, robust solutions that protect, empower, and showcase your vision.<br><br>
+        From arcade and multiplayer games to UI/UX, 3D art, electronics integration, and full-stack development, we blend creativity with engineering to deliver experiences that are both fun and functional.
+        `,
     },
     services: {
         title: "Services",
@@ -50,13 +49,13 @@ window.siteData = {
         title: "Portfolio Games",
         description: "To Showcase My Technical Skills and Projects",
         projects: [
-            {
-                name: "VR Cricket Duel",
-                platform: "WebGL VR & Mobile",
-                hasEmbed: true,
-                embedGame: `<iframe src="https://yourwebglgameurl.com" width="1080" height="720" frameborder="0" allowfullscreen></iframe>`,
-                link: "https://yourwebglgameurl.com"
-            },
+            // {
+            //     name: "VR Cricket Duel",
+            //     platform: "WebGL VR & Mobile",
+            //     hasEmbed: true,
+            //     embedGame: `<iframe src="https://yourwebglgameurl.com" width="1080" height="720" frameborder="0" allowfullscreen></iframe>`,
+            //     link: "https://yourwebglgameurl.com"
+            // },
         ]
     },
     featured: {
@@ -97,7 +96,14 @@ window.siteData = {
                 embedSourceType: "youtube",
                 link: "https://www.youtube.com/watch?v=GWuH44ZF3K4",
                 embedData: `<iframe width="500" height="281" src="https://www.youtube.com/embed/GWuH44ZF3K4" title="Aldrago&#39;s M-Mission GamePlay Server made by me samp server" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
-            }
+            },
+            {
+                title: "Mingo",
+                description: "A blockchain-related project developed by Naima. Visit the website for more details.",
+                embedSourceType: "website",
+                link: "https://mingo.com",
+                embedData: ""
+            },
         ]
     },
     team: [

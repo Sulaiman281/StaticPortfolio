@@ -19,17 +19,15 @@ function renderHero(data) {
     return el("section", { class: "hero", id: "hero" },
         el("div", { class: "hero-img-wrap" },
             el("img", {
-                src: "images/pic_bw.png",
-                alt: data.about.title,
-                onmouseenter: e => e.currentTarget.src = "images/pic.png",
-                onmouseleave: e => e.currentTarget.src = "images/pic_bw.png"
+                src: "images/witshell-logo.png",
+                alt: "WitShells Logo"
             })
         ),
         el("div", { class: "hero-content" },
             el("h1", {}, data.about.title),
             el("div", { class: "subtitle" }, data.about.subtitle),
             el("div", { class: "desc", html: data.about.description }),
-            el("a", { href: data.about.resumeUrl, class: "resume-btn", target: "_blank" }, "View Resume")
+            // el("a", { href: data.about.resumeUrl, class: "resume-btn", target: "_blank" }, "View Resume")
         )
     );
 }
