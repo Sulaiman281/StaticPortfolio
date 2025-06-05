@@ -53,7 +53,7 @@ window.siteData = {
                 name: "Endless Car Coin Picker",
                 platform: "WebGL",
                 hasEmbed: true,
-                embedGame: `<iframe src="https://sulaiman281.github.io/EndlessCarGame-WebGL/" width="640" height="960" frameborder="0" allowfullscreen></iframe>`,
+                embedGame: `<iframe src="https://sulaiman281.github.io/EndlessCarGame-WebGL/" width="720" height="1080" frameborder="0" allowfullscreen></iframe>`,
                 link: "https://sulaiman281.github.io/EndlessCarGame-WebGL/"
             },
         ]

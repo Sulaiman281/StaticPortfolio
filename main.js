@@ -57,14 +57,36 @@ function renderPortfolio(data) {
     return el("section", { id: "portfolio" },
         el("h2", {}, data.portfolio.title),
         el("div", { class: "portfolio-list" },
-            ...data.portfolio.projects.map(p =>
-                el("div", { class: "portfolio-card" },
-                    p.hasEmbed ? el("div", { html: p.embedGame }) : null,
-                    el("h3", {}, p.name),
-                    el("div", { class: "platform" }, p.platform),
-                    el("a", { href: p.link, target: "_blank" }, "Play / View")
-                )
-            )
+            ...data.portfolio.projects.map(project => {
+                // Only show play button for WebGL games with embed
+                let embedContainer = el("div", { class: "portfolio-embed" });
+                let playBtn = null;
+                if (project.hasEmbed && project.platform.toLowerCase().includes("webgl")) {
+                    playBtn = el("button", {
+                        class: "play-webgl-btn",
+                        onclick: () => {
+                            embedContainer.innerHTML = project.embedGame;
+                            playBtn.style.display = "none";
+                        }
+                    }, "▶ Play");
+                } else if (project.hasEmbed) {
+                    // For non-WebGL, just show embed
+                    embedContainer.innerHTML = project.embedGame;
+                }
+
+                return el("div", { class: "portfolio-card" },
+                    el("div", { class: "portfolio-title" }, project.name),
+                    el("div", { class: "platform" }, project.platform),
+                    playBtn,
+                    embedContainer,
+                    project.link ? el("a", {
+                        href: project.link,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "portfolio-link"
+                    }, "Open in new tab") : null
+                );
+            })
         )
     );
 }
