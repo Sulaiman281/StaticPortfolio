@@ -334,6 +334,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mousemove", e => {
         rect.style.transform = `translate(${e.clientX - 30}px, ${e.clientY - 18}px)`;
     });
+
+    // Responsive nav toggle button
+    const nav = document.querySelector('.main-nav');
+    if (nav) {
+        // Create toggle button
+        const btn = document.createElement('button');
+        btn.className = 'nav-toggle-btn';
+        btn.innerHTML = '<span></span>';
+        document.body.appendChild(btn);
+
+        btn.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+
+        // Close nav when clicking outside or on a link
+        document.addEventListener('click', (e) => {
+            if (
+                nav.classList.contains('open') &&
+                !nav.contains(e.target) &&
+                !btn.contains(e.target)
+            ) {
+                nav.classList.remove('open');
+            }
+            if (e.target.closest('.main-nav a')) {
+                nav.classList.remove('open');
+            }
+        });
+    }
 });
 
 function shouldShowTour() {

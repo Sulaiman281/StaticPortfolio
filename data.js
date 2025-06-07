@@ -3,10 +3,10 @@ window.siteData = {
     favicon: "images/favicon.png",
     about: {
         title: "WitShells",
-        subtitle: "Game Development & Creative Software Studio",
+        subtitle: "Partners in Innovation & Code",
         description: `
-        WitShells is more than a name—it's a philosophy. "Wit" stands for intelligence, creativity, and sharp problem-solving. "Shells" represent the frameworks, platforms, and digital worlds we build to bring ideas to life. Together, WitShells means crafting smart, robust solutions that protect, empower, and showcase your vision.<br><br>
-        From arcade and multiplayer games to UI/UX, 3D art, electronics integration, and full-stack development, we blend creativity with engineering to deliver experiences that are both fun and functional.
+        WitShells is a creative studio led by a passionate husband-wife duo. We blend technical expertise and imagination to build games, apps, and digital solutions that stand out.<br><br>
+        From game development and UI/UX to blockchain and AI automation, we turn ideas into reality—together.
         `,
     },
     services: {
@@ -14,33 +14,33 @@ window.siteData = {
         _items: [
             {
                 name: "Game Development",
-                description: "Android, VR, WebGL platforms. High performance, optimized code, and engaging gameplay.",
+                description: "Expert game development for Android, VR, and WebGL platforms. We deliver high-performance, optimized code and captivating gameplay to bring your ideas to life.",
                 icon: "images/console.png",
-                skill: 95 // percent
+                skill: 99 // percent
             },
             {
                 name: "Backend Programming",
-                description: "Custom REST APIs and microservices for any platform. We design and build optimized, scalable backend solutions for projects of all sizes, from small apps to large-scale user systems.",
+                description: "Professional backend development including custom REST APIs and microservices for any platform. We build scalable, secure, and efficient backend solutions for startups to enterprise-level applications.",
                 icon: "images/web-development.png",
-                skill: 90
+                skill: 99
             },
             {
                 name: "Mentorship & Teaching",
-                description: "We teach basic programming languages, Unity game development, and blockchain fundamentals. Personalized guidance for all levels.",
+                description: "Personalized programming mentorship and training in basic programming languages, Unity game development, and blockchain technology. Learn from industry experts at your own pace.",
                 icon: "images/team.png",
-                skill: 85
+                skill: 99
             },
             {
                 name: "Blockchain Development",
-                description: "Smart contracts, decentralized applications, and blockchain integration.",
+                description: "Blockchain solutions including smart contract development, decentralized applications (dApps), and seamless blockchain integration for your business needs.",
                 icon: "images/blockchain.png",
-                skill: 80
+                skill: 99
             },
             {
                 name: "AI Automation",
-                description: "We build AI-powered tools to automate your workflow and boost productivity.",
+                description: "AI automation services to streamline your workflow. We create intelligent tools and solutions that boost productivity and efficiency for businesses of all sizes.",
                 icon: "images/ai.png",
-                skill: 80
+                skill: 99
             },
         ],
         get items() {
@@ -55,7 +55,7 @@ window.siteData = {
         description: "To Showcase My Technical Skills and Projects",
         projects: [
             {
-                name: "Endless Car Coin Picker",
+                name: "Endless Car Coin Picker | 2Hour Challenge Game",
                 platform: "WebGL",
                 hasEmbed: true,
                 embedGame: `<iframe src="https://sulaiman281.github.io/EndlessCarGame-WebGL/" width="720" height="1080" frameborder="0" allowfullscreen></iframe>`,
@@ -107,7 +107,7 @@ window.siteData = {
         wife: [
             {
                 title: "Mingo",
-                description: "A blockchain-related project developed by Naima. Visit the website for more details.",
+                description: "Mingo is a next-generation blockchain platform focused on simplifying crypto adoption for everyone. It offers secure digital wallets, seamless token management, and user-friendly tools for both beginners and advanced users. Mingo empowers users to manage, send, and receive digital assets with ease, making blockchain technology accessible and practical for daily use.",
                 embedSourceType: "website",
                 link: "https://mingo.com",
                 embedData: ""
