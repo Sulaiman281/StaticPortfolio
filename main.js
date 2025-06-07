@@ -92,10 +92,34 @@ function renderPortfolio(data) {
 }
 
 function renderFeatured(data) {
-    return el("section", { id: "featured" },
-        el("h2", {}, data.featured.title),
-        el("div", { class: "featured-list" },
-            ...data.featured.projects.map(p =>
+    let current = "husband"; // "husband" or "wife"
+
+    const section = el("section", { id: "featured" });
+
+    // Title (now above toggle)
+    const title = el("h2", {}, data.featured.title);
+
+    // Toggle buttons
+    const toggleWrap = el("div", { class: "featured-toggle-wrap" });
+    const heBtn = el("button", {
+        class: "featured-toggle-btn active",
+        onclick: () => setType("husband")
+    }, "He");
+    const divider = el("span", { class: "featured-toggle-divider" });
+    const herBtn = el("button", {
+        class: "featured-toggle-btn",
+        onclick: () => setType("wife")
+    }, "Her");
+    toggleWrap.append(heBtn, divider, herBtn);
+
+    // List container
+    const list = el("div", { class: "featured-list" });
+
+    // Render projects
+    function renderList(type) {
+        list.innerHTML = "";
+        (data.featured[type] || []).forEach(p => {
+            list.appendChild(
                 el("div", { class: "featured-card" },
                     el("div", { html: p.embedData }),
                     el("a", {
@@ -106,14 +130,28 @@ function renderFeatured(data) {
                     }, p.title),
                     el("div", { class: "desc" }, p.description)
                 )
-            )
-        )
-    );
+            );
+        });
+    }
+
+    // Toggle handler
+    function setType(type) {
+        current = type;
+        heBtn.classList.toggle("active", type === "husband");
+        herBtn.classList.toggle("active", type === "wife");
+        renderList(type);
+    }
+
+    // Initial render
+    section.append(title, toggleWrap, list);
+    renderList(current);
+
+    return section;
 }
 
 function renderTeam(data) {
     return el("section", { id: "team" },
-        el("h2", {}, "Team"),
+        el("h2", {}, "Partners in Life & Code"),
         el("div", { class: "team-list" },
             ...data.team.map(m =>
                 el("div", { class: "team-card" },
@@ -124,7 +162,8 @@ function renderTeam(data) {
                         rel: "noopener noreferrer",
                         class: "team-name-link"
                     }, m.name),
-                    el("div", { class: "role" }, m.role)
+                    el("div", { class: "role" }, m.role),
+                    m.note ? el("div", { class: "team-note" }, m.note) : null
                 )
             )
         )
@@ -276,9 +315,9 @@ function renderPage(data) {
     app.append(
         renderHero(data),
         renderServices(data),
+        renderTeam(data),
         renderPortfolio(data),
         renderFeatured(data),
-        renderTeam(data),
         renderFeedbacks(data),
         renderFooter(data)
     );
@@ -296,3 +335,11 @@ document.addEventListener("DOMContentLoaded", () => {
         rect.style.transform = `translate(${e.clientX - 30}px, ${e.clientY - 18}px)`;
     });
 });
+
+function shouldShowTour() {
+    return !localStorage.getItem('witshells_tour_done');
+}
+
+function markTourDone() {
+    localStorage.setItem('witshells_tour_done', '1');
+}

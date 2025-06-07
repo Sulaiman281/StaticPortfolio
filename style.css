@@ -744,3 +744,141 @@ body::after {
   align-items: center;
   justify-content: center;
 }
+
+/* --- Featured Toggle Modern Design --- */
+.featured-toggle-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+    border-radius: 32px;
+    box-shadow: 0 2px 16px #2ADD8922;
+    border: 2px solid var(--accent);
+    padding: 0.16em 0.32em; /* 20% less */
+    margin-bottom: 1.2em;   /* slightly less for balance */
+    position: relative;
+    min-width: 176px;       /* 20% less */
+    gap: 0;
+}
+
+.featured-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9em;       /* 20% less */
+    padding: 0.56em 1.76em; /* 20% less */
+    border-radius: 32px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    outline: none;
+    z-index: 1;
+    position: relative;
+}
+
+.featured-toggle-btn.active {
+    background: var(--accent);
+    color: var(--bg2);
+    box-shadow: 0 2px 12px #2ADD8933;
+}
+
+.featured-toggle-btn:focus {
+    outline: 2px solid var(--accent);
+}
+
+.featured-toggle-divider {
+    width: 1.44em;          /* 20% less */
+    height: 1.76em;         /* 20% less */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: relative;
+    z-index: 2;
+}
+
+.featured-toggle-divider::before {
+    content: "/";
+    color: var(--accent);
+    font-size: 1.2em;       /* 20% less */
+    font-weight: 700;
+    opacity: 0.7;
+    transform: skew(-18deg, 0deg);
+    display: block;
+    line-height: 1;
+}
+
+.team-note {
+    font-size: 0.92em;
+    color: var(--text2);
+    opacity: 0.7;
+    margin-top: 0.2em;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Add this to your style.css */
+.floating-contact-btn {
+    position: fixed;
+    right: 32px;         /* Changed from left to right */
+    bottom: 32px;
+    z-index: 9999;
+    background: var(--accent); /* Use your theme accent color */
+    color: #181a20;      /* High contrast with accent */
+    font-weight: bold;
+    font-size: 1.08em;
+    padding: 0.85em 2.2em;
+    border-radius: 32px;
+    box-shadow: 0 4px 24px #2ADD8944;
+    text-decoration: none;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+.floating-contact-btn:hover {
+    background: #00cfa0; /* A lighter accent for hover */
+    box-shadow: 0 8px 32px #2ADD8966;
+    transform: translateY(-2px) scale(1.04);
+    color: #fff;
+}
+
+.tour-highlight {
+    box-shadow: 0 0 0 4px var(--accent), 0 4px 32px #2ADD8933 !important;
+    z-index: 10001 !important;
+    position: relative;
+    border-radius: 12px;
+    transition: box-shadow 0.2s;
+}
+#tour-overlay {
+    position: absolute;
+    z-index: 10002;
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.2em 2em;
+    box-shadow: 0 8px 32px #2ADD8966;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 220px;
+    max-width: 320px;
+}
+.tour-message {
+    font-size: 1.08em;
+    color: var(--accent);
+    margin-bottom: 0.7em;
+}
+.tour-next-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+.tour-next-btn:hover {
+    background: #00cfa0;
+}

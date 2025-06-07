@@ -20,13 +20,13 @@ window.siteData = {
             },
             {
                 name: "Backend Programming",
-                description: "REST APIs & backend in ASP.NET Core. Secure, scalable, and robust solutions.",
+                description: "Custom REST APIs and microservices for any platform. We design and build optimized, scalable backend solutions for projects of all sizes, from small apps to large-scale user systems.",
                 icon: "images/web-development.png",
                 skill: 90
             },
             {
                 name: "Mentorship & Teaching",
-                description: "Unity 3D game development, C#, and game design. Personalized guidance for all levels.",
+                description: "We teach basic programming languages, Unity game development, and blockchain fundamentals. Personalized guidance for all levels.",
                 icon: "images/team.png",
                 skill: 85
             },
@@ -36,7 +36,12 @@ window.siteData = {
                 icon: "images/blockchain.png",
                 skill: 80
             },
-
+            {
+                name: "AI Automation",
+                description: "We build AI-powered tools to automate your workflow and boost productivity.",
+                icon: "images/ai.png",
+                skill: 80
+            },
         ],
         get items() {
             return this._items;
@@ -61,7 +66,7 @@ window.siteData = {
     featured: {
         title: "Featured Projects",
         description: "Highlighting some of my best work.",
-        projects: [
+        husband: [
             {
                 title: "WheelToWin",
                 description: "Car Racing Game, where user can take part in different events and earn money. I worked on as indie game developer. I handled the game design, development, and backend programming. also I am the one who hosted the game on AWS and made it live.",
@@ -97,11 +102,56 @@ window.siteData = {
                 link: "https://www.youtube.com/watch?v=GWuH44ZF3K4",
                 embedData: `<iframe width="500" height="281" src="https://www.youtube.com/embed/GWuH44ZF3K4" title="Aldrago&#39;s M-Mission GamePlay Server made by me samp server" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
             },
+
+        ],
+        wife: [
             {
                 title: "Mingo",
                 description: "A blockchain-related project developed by Naima. Visit the website for more details.",
                 embedSourceType: "website",
                 link: "https://mingo.com",
+                embedData: ""
+            },
+            {
+                title: "AISense",
+                description: "Combines cutting-edge blockchain technology with NFT staking, showcasing expertise in fintech and crypto solutions. Technologies: Blockchain, NFT integration, MERN stack.",
+                embedSourceType: "website",
+                link: "https://aisense.vercel.app/",
+                embedData: ""
+            },
+            {
+                title: "Samudra Yacht Club",
+                description: "Demonstrates the ability to create membership platforms with NFTs, relevant for luxury or exclusive services. Technologies: NFT integration, Web3.",
+                embedSourceType: "website",
+                link: "https://samudra-yacht-club.vercel.app/",
+                embedData: ""
+            },
+            {
+                title: "DegenDraw",
+                description: "Highlights blockchain and gamification expertise with a lottery system. Perfect for showcasing your wife’s skills in smart contract development and user engagement. Technologies: Blockchain (Base network), MERN stack, gamification.",
+                embedSourceType: "website",
+                link: "https://degendraw.vercel.app/",
+                embedData: ""
+            },
+            {
+                title: "Alpha Octopus",
+                description: "Features community engagement and a strong NFT foundation, appealing to clients in the crypto/NFT space. Technologies: NFT platform, roadmap development, community tools.",
+                embedSourceType: "website",
+                link: "https://alphaoctopus.netlify.app/",
+                embedData: ""
+            },
+            {
+                title: "NFT Market (Mechademy)",
+                description: "Showcases e-commerce capabilities for NFTs, targeting marketplaces and digital asset platforms. Technologies: Blockchain, NFT integration, MERN stack.",
+                embedSourceType: "website",
+                link: "https://nft-market-seven.vercel.app/",
+                embedData: ""
+            },
+            {
+                title: "Admin Dashboard (React Material UI)",
+                description: "Highlights skills in enterprise-level application development and user-friendly dashboards, appealing to corporate clients. Technologies: React, Material UI, MERN stack.",
+                embedSourceType: "website",
+                link: "https://admin-dashboard-reactmaterial-ui.netlify.app/",
                 embedData: ""
             },
         ]
@@ -110,39 +160,17 @@ window.siteData = {
         {
             name: "Syed Suleman Shah",
             picture: "images/pic11.png",
-            role: "Unity Game Developer",
-            portfolio: "https://sulaiman281.github.io/Resume/"
+            role: "Unity Game Developer, Founder, and Husband",
+            portfolio: "https://sulaiman281.github.io/Resume/",
+            note: "Building dreams together with my wife."
         },
         {
             name: "Naima Ghulam Muhammad",
             picture: "images/naima-pic.jpg",
-            role: "Blockchain | Mern Stack Developer",
-            portfolio: "https://github.com/NaimaGhulamMuhammad" // Example link, update as needed
+            role: "Blockchain & MERN Stack Developer, Co-Founder, and Wife",
+            portfolio: "https://github.com/NaimaGhulamMuhammad",
+            note: "My partner in life and code."
         },
-        // {
-        //     name: "Mahen Gulam Muhammad",
-        //     picture: "images/no-profile.png",
-        //     role: "Junior UI/UX Designer",
-        //     portfolio: "https://dribbble.com/mahengm" // Example link, update as needed
-        // },
-        // {
-        //     name: "Fahad Burfat",
-        //     picture: "images/no-profile.png",
-        //     role: "3D Artist",
-        //     portfolio: "https://artstation.com/fahadburfat" // Example link, update as needed
-        // },
-        // {
-        //     name: "Muhammad Uzair",
-        //     picture: "images/no-profile.png",
-        //     role: "Senior Graphic Designer",
-        //     portfolio: "https://behance.net/muhammaduzair" // Example link, update as needed
-        // },
-        // {
-        //     name: "Najeeb Ahmed",
-        //     picture: "images/no-profile.png",
-        //     role: "Electronics | AI Engineer",
-        //     portfolio: "https://github.com/najeebahmed" // Example link, update as needed
-        // }
     ],
     feedbacks: [
         {
