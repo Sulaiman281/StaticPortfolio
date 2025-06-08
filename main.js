@@ -388,10 +388,19 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // MetaMask payment
+    function isMobile() {
+        return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+    }
+
     document.getElementById("payWithMetaMask").onclick = async function () {
         if (!window.ethereum) {
-            document.getElementById("coffeeStatus").textContent =
-                "No crypto wallet detected. Please install MetaMask, Coinbase Wallet, or another Ethereum wallet extension.";
+            if (isMobile()) {
+                document.getElementById("coffeeStatus").textContent =
+                    "Crypto wallet not detected. On mobile, please copy the wallet address above and send $5 using your crypto wallet app.";
+            } else {
+                document.getElementById("coffeeStatus").textContent =
+                    "No crypto wallet detected. Please install MetaMask, Coinbase Wallet, or another Ethereum wallet extension.";
+            }
             return;
         }
         try {
