@@ -362,6 +362,66 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // Show wallet address in modal
+    const wallet = window.siteData?.bankdetail?.metamask || "";
+    document.getElementById("coffeeWallet").textContent = wallet;
+
+    // Show modal
+    document.getElementById("buyCoffeeBtn").onclick = function () {
+        document.getElementById("coffeeModal").style.display = "flex";
+        document.getElementById("coffeeStatus").textContent = "";
+    };
+    // Close modal
+    document.getElementById("closeCoffeeModal").onclick = function () {
+        document.getElementById("coffeeModal").style.display = "none";
+    };
+    window.onclick = function (event) {
+        if (event.target === document.getElementById("coffeeModal")) {
+            document.getElementById("coffeeModal").style.display = "none";
+        }
+    };
+    // Copy wallet address
+    document.getElementById("copyWalletBtn").onclick = function () {
+        navigator.clipboard.writeText(wallet);
+        document.getElementById("coffeeStatus").textContent = "Wallet address copied!";
+    };
+
+    // MetaMask payment
+    document.getElementById("payWithMetaMask").onclick = async function () {
+        if (!window.ethereum) {
+            document.getElementById("coffeeStatus").textContent =
+                "No crypto wallet detected. Please install MetaMask, Coinbase Wallet, or another Ethereum wallet extension.";
+            return;
+        }
+        try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+            const from = accounts[0];
+            // Get $5 in ETH (approximate, you may want to fetch real-time price for production)
+            const ethValue = (5 / 3500).toFixed(6); // Example: $5 at $3500/ETH
+            const tx = {
+                from,
+                to: wallet,
+                value: (parseFloat(ethValue) * 1e18).toString(16), // in wei, hex
+            };
+            await window.ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [tx],
+            });
+            document.getElementById("coffeeStatus").textContent = "Thank you! Payment sent.";
+        } catch (err) {
+            document.getElementById("coffeeStatus").textContent = "Payment cancelled or failed.";
+        }
+    };
+
+    // Show Wise section if data is present
+    const wise = window.siteData?.bankdetail?.wise;
+    if (wise && wise.qr && wise.link) {
+        document.getElementById("wiseSection").style.display = "block";
+        document.getElementById("wiseQR").src = wise.qr;
+        document.getElementById("wiseLink").href = wise.link;
+    }
 });
 
 function shouldShowTour() {

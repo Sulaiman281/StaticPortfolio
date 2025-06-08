@@ -250,5 +250,12 @@ window.siteData = {
                 text: "3 jobs with 5★ positive rating"
             }
         ]
-    }
+    },
+    bankdetail: {
+        metamask: "0xa57FCAC8371AfD253c03BaF62Ce0A3C3cbF74F0e", // your wallet address
+        wise: {
+            qr: "images/wise-qr.jpg", // path to your Wise QR code image
+            link: "https://wise.com/pay/me/syeds3242" // your Wise payment link
+        }
+    },
 };

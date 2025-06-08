@@ -64,6 +64,36 @@
   <a href="https://wa.me/9203093023289" target="_blank" class="floating-contact-btn" title="Contact Us on WhatsApp">
     Contact Us
   </a>
+
+  <!-- Buy Us a Coffee Floating Button -->
+  <button class="floating-coffee-btn" id="buyCoffeeBtn" title="Buy Us a Coffee ☕">☕ Buy Us a Coffee</button>
+
+  <!-- Buy Us a Coffee Modal -->
+  <div id="coffeeModal" class="coffee-modal">
+    <div class="coffee-modal-content">
+      <span class="coffee-close" id="closeCoffeeModal">&times;</span>
+      <h3>Support Our Journey</h3>
+      <p>Show your appreciation for our work—buy us a $5 coffee!</p>
+
+      <!-- Wise section first -->
+      <div class="wise-section" id="wiseSection" style="display:none;">
+        <h4>Pay with Wise</h4>
+        <a id="wiseLink" href="#" target="_blank">
+          <img id="wiseQR" src="" alt="Wise QR Code" style="width:180px;display:block;margin:0 auto 0.5em auto;">
+          <div class="wise-link">Pay via Wise</div>
+        </a>
+      </div>
+
+      <!-- Crypto wallet section below -->
+      <div class="coffee-wallet">
+        <div class="wallet-label">Wallet Address:</div>
+        <div class="wallet-value" id="coffeeWallet"></div>
+        <button id="copyWalletBtn" class="copy-btn">Copy</button>
+      </div>
+      <button id="payWithMetaMask" class="pay-btn">Pay $5 with Crypto Wallet</button>
+      <div id="coffeeStatus" class="coffee-status"></div>
+    </div>
+  </div>
 </body>
 
 </html>
