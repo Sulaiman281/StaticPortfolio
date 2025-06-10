@@ -252,7 +252,7 @@ window.siteData = {
         ]
     },
     bankdetail: {
-        metamask: "0xa57FCAC8371AfD253c03BaF62Ce0A3C3cbF74F0e", // your wallet address
+        metamask: "0xd9332911cFEc524c0891b9037d5F7CCecB1FB642", // your wallet address
         wise: {
             qr: "images/wise-qr.jpg", // path to your Wise QR code image
             link: "https://wise.com/pay/me/syeds3242" // your Wise payment link
