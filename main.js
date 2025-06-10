@@ -388,8 +388,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // MetaMask payment
-    function isMobile() {
-        return /android|iphone|ipad|ipod/i.test(navigator.userAgent);
+    async function getNativePrice(symbol = "ETH") {
+        // Use CoinGecko API for price (ETH or BNB)
+        const id = symbol === "BNB" ? "binancecoin" : "ethereum";
+        const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd`);
+        const data = await res.json();
+        return data[id].usd;
     }
 
     document.getElementById("payWithMetaMask").onclick = async function () {
@@ -407,18 +411,23 @@ document.addEventListener("DOMContentLoaded", () => {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
             const accounts = await window.ethereum.request({ method: 'eth_accounts' });
             const from = accounts[0];
-            // Get $5 in ETH (approximate, you may want to fetch real-time price for production)
-            const ethValue = (5 / 3500).toFixed(6); // Example: $5 at $3500/ETH
+            const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+            let symbol = "ETH";
+            if (chainId === "0x38" || chainId === "0x61") symbol = "BNB"; // 0x38 = BSC Mainnet, 0x61 = BSC Testnet
+
+            const price = await getNativePrice(symbol);
+            const nativeAmount = (5 / price).toFixed(6);
+
             const tx = {
                 from,
                 to: wallet,
-                value: (parseFloat(ethValue) * 1e18).toString(16), // in wei, hex
+                value: (parseFloat(nativeAmount) * 1e18).toString(16), // in wei, hex
             };
             await window.ethereum.request({
                 method: 'eth_sendTransaction',
                 params: [tx],
             });
-            document.getElementById("coffeeStatus").textContent = "Thank you! Payment sent.";
+            document.getElementById("coffeeStatus").textContent = `Thank you! Payment sent (${nativeAmount} ${symbol}).`;
         } catch (err) {
             document.getElementById("coffeeStatus").textContent = "Payment cancelled or failed.";
         }
