@@ -194,7 +194,7 @@ window.siteData = {
         {
             clientName: "asad orabic",
             clientProfile: "images/no-profile.png", // Add this line (use actual image path)
-            feedback: "I want to personally thank Mr. Syed for his exceptional expertise in Java and REST APIs. Having had the pleasure of working with him on one project and currently collaborating on another, I can attest to his remarkable dedication and hard work. I highly recommend him for any API solutions you may need",
+            feedback: "I want to personally thank Mr. Syed for his exceptional expertise in REST APIs. Having had the pleasure of working with him on one project and currently collaborating on another, I can attest to his remarkable dedication and hard work. I highly recommend him for any API solutions you may need",
             rating: 5
         },
         {
