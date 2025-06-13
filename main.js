@@ -314,8 +314,8 @@ function renderPage(data) {
     const app = document.getElementById("app");
     app.append(
         renderHero(data),
-        renderServices(data),
         renderTeam(data),
+        renderServices(data),
         renderPortfolio(data),
         renderFeatured(data),
         renderFeedbacks(data),
@@ -440,6 +440,262 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("wiseQR").src = wise.qr;
         document.getElementById("wiseLink").href = wise.link;
     }
+
+    // Smoke effect background (more realistic, white smoke, more particles, always behind content)
+    (function () {
+        const canvas = document.getElementById('smoke-bg');
+        const ctx = canvas.getContext('2d');
+        let w = window.innerWidth, h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.position = "absolute";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.zIndex = "0";
+        canvas.style.pointerEvents = "none";
+        canvas.style.background = "transparent";
+
+        const colors = [
+            "#ffffff33", // soft white
+            "#baffff22", // soft blue
+            "#00cfa022"  // very soft teal
+        ];
+        const bubbles = [];
+        const maxBubbles = 24;
+        const gunRadius = 20;
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        function createBubble() {
+            const angle = randomBetween(Math.PI * 0.10, Math.PI * 0.35);
+            const baseX = randomBetween(-40, gunRadius);
+            const baseY = randomBetween(-40, gunRadius);
+            const speed = randomBetween(2, 6); // much slower
+            return {
+                x: baseX,
+                y: baseY,
+                r: randomBetween(18, 36),
+                alpha: randomBetween(0.10, 0.18),
+                speedX: Math.cos(angle) * speed,
+                speedY: Math.sin(angle) * speed,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                age: 0,
+                maxAge: randomBetween(800, 1800)
+            };
+        }
+
+        function emitBubbles() {
+            if (bubbles.length < maxBubbles) {
+                bubbles.push(createBubble());
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            emitBubbles();
+
+            for (let i = bubbles.length - 1; i >= 0; i--) {
+                const b = bubbles[i];
+                b.x += b.speedX;
+                b.y += b.speedY;
+                b.speedX *= 0.995;
+                b.speedY *= 0.995;
+                b.age++;
+                let fade = Math.max(0, 1 - b.age / b.maxAge);
+
+                ctx.save();
+                ctx.globalAlpha = b.alpha * fade;
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fillStyle = b.color;
+                ctx.shadowColor = "#fff";
+                ctx.shadowBlur = 16;
+                ctx.fill();
+                ctx.restore();
+
+                if (b.x - b.r > w || b.y - b.r > h || fade < 0.05) {
+                    bubbles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    })();
+
+    // Bubble effect background: bubbles float, pop on cursor interaction
+    (function () {
+        const canvas = document.getElementById('smoke-bg');
+        const ctx = canvas.getContext('2d');
+        let w = window.innerWidth, h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.position = "fixed";
+        canvas.style.top = "0";
+        canvas.style.left = "0";
+        canvas.style.zIndex = "0";
+        canvas.style.pointerEvents = "none";
+        canvas.style.background = "transparent";
+
+        // Bubble colors (neon/cool)
+        const colors = [
+            "#00fff7cc", // neon cyan
+            "#00cfa0bb", // teal
+            "#fff",      // white
+            "#00e0ff88", // blue-cyan
+            "#00ffb388", // neon greenish
+            "#baffff44"  // soft blue
+        ];
+        const bubbles = [];
+        const maxBubbles = 20;
+        const gunRadius = 20; // Gun radius at the left-top
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        function createBubble() {
+            const angle = randomBetween(Math.PI * 0.10, Math.PI * 0.35); // Aim toward bottom-right
+            const baseX = randomBetween(-40, gunRadius);
+            const baseY = randomBetween(-40, gunRadius);
+            const speed = randomBetween(10, 40);
+            return {
+                x: baseX,
+                y: baseY,
+                r: randomBetween(24, 48),
+                alpha: randomBetween(0.18, 0.32),
+                speedX: Math.cos(angle) * speed,
+                speedY: Math.sin(angle) * speed,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                age: 0,
+                maxAge: randomBetween(300, 3200),
+                popped: false
+            };
+        }
+
+        function emitBubbles() {
+            for (let i = 0; i < 4 + Math.floor(Math.random() * 3); i++) {
+                if (bubbles.length < maxBubbles) {
+                    bubbles.push(createBubble());
+                }
+            }
+        }
+
+        // Track cursor for popping
+        let cursor = { x: -1000, y: -1000 };
+        window.addEventListener("mousemove", e => {
+            cursor.x = e.clientX;
+            cursor.y = e.clientY;
+        });
+        window.addEventListener("mouseleave", () => {
+            cursor.x = -1000;
+            cursor.y = -1000;
+        });
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            emitBubbles();
+
+            for (let i = bubbles.length - 1; i >= 0; i--) {
+                const b = bubbles[i];
+                // Move toward bottom-right, slow as it ages
+                b.x += b.speedX;
+                b.y += b.speedY;
+                b.speedX *= 0.985;
+                b.speedY *= 0.985;
+                b.age++;
+
+                // Pop if cursor is inside bubble and not already popped
+                if (!b.popped) {
+                    const dx = b.x - cursor.x;
+                    const dy = b.y - cursor.y;
+                    if (dx * dx + dy * dy < b.r * b.r) {
+                        b.popped = true;
+                        b.popFrame = 0;
+                    }
+                }
+
+                // Animate pop: scale up and fade out quickly
+                let fade = Math.max(0, 1 - b.age / b.maxAge);
+                let scale = 1;
+                if (b.popped) {
+                    b.popFrame = (b.popFrame || 0) + 1;
+                    scale = 1 + b.popFrame * 0.22 - Math.pow(b.popFrame * 0.13, 2); // scale up then shrink
+                    fade *= Math.max(0, 1 - b.popFrame / 8);
+                }
+
+                ctx.save();
+                ctx.globalAlpha = b.alpha * fade;
+
+                // Main bubble (transparent, with gradient)
+                let grad = ctx.createRadialGradient(b.x, b.y, b.r * scale * 0.2, b.x, b.y, b.r * scale);
+                grad.addColorStop(0, "#fff8");
+                grad.addColorStop(0.3, b.color);
+                grad.addColorStop(1, "#fff0");
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r * scale, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fillStyle = grad;
+                ctx.shadowColor = b.color;
+                ctx.shadowBlur = 32;
+                ctx.fill();
+
+                // Reflection highlight
+                ctx.globalAlpha = b.alpha * fade * 0.7;
+                ctx.beginPath();
+                ctx.ellipse(
+                    b.x - b.r * scale * 0.35,
+                    b.y - b.r * scale * 0.35,
+                    b.r * scale * 0.28,
+                    b.r * scale * 0.18,
+                    Math.PI / 6,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fillStyle = "#fff9";
+                ctx.fill();
+
+                // Bottom light effect
+                ctx.globalAlpha = b.alpha * fade * 0.18;
+                ctx.beginPath();
+                ctx.ellipse(
+                    b.x + b.r * scale * 0.18,
+                    b.y + b.r * scale * 0.38,
+                    b.r * scale * 0.32,
+                    b.r * scale * 0.14,
+                    Math.PI / 4,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fillStyle = "#fff";
+                ctx.fill();
+
+                ctx.restore();
+
+                // Remove if out of screen, faded, or popped and finished
+                if (
+                    b.x - b.r > w || b.y - b.r > h ||
+                    fade < 0.05 ||
+                    (b.popped && b.popFrame > 8)
+                ) {
+                    bubbles.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        window.addEventListener('resize', () => {
+            w = window.innerWidth;
+            h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+        });
+    })();
 });
 
 function shouldShowTour() {
