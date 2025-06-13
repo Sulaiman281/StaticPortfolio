@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "#baffff44"  // soft blue
         ];
         const bubbles = [];
-        const maxBubbles = 20;
+        const maxBubbles = 5;
         const gunRadius = 20; // Gun radius at the left-top
 
         function randomBetween(a, b) {
@@ -559,9 +559,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function createBubble() {
             const angle = randomBetween(Math.PI * 0.10, Math.PI * 0.35); // Aim toward bottom-right
-            const baseX = randomBetween(-40, gunRadius);
-            const baseY = randomBetween(-40, gunRadius);
-            const speed = randomBetween(10, 40);
+            const baseX = randomBetween(-20, gunRadius);
+            const baseY = randomBetween(-20, gunRadius);
+            const speed = randomBetween(.5, 5);
             return {
                 x: baseX,
                 y: baseY,
@@ -604,8 +604,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Move toward bottom-right, slow as it ages
                 b.x += b.speedX;
                 b.y += b.speedY;
-                b.speedX *= 0.985;
-                b.speedY *= 0.985;
+                // b.speedX *= 1.585;
+                // b.speedY *= 1.585;
                 b.age++;
 
                 // Pop if cursor is inside bubble and not already popped
