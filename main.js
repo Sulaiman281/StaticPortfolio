@@ -443,6 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Smoke effect background (more realistic, white smoke, more particles, always behind content)
     (function () {
+        const isMobile = /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent);
+        if (isMobile) return; // Do not render bubbles on mobile
+
+
         const canvas = document.getElementById('smoke-bg');
         const ctx = canvas.getContext('2d');
         let w = window.innerWidth, h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
