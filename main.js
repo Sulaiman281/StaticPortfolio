@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "#00cfa022"  // very soft teal
         ];
         const bubbles = [];
-        const maxBubbles = 24;
+        const maxBubbles = 1;
         const gunRadius = 20;
 
         function randomBetween(a, b) {
@@ -491,9 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function emitBubbles() {
-            if (bubbles.length < maxBubbles) {
-                bubbles.push(createBubble());
-            }
+            bubbles.push(createBubble());
         }
 
         function draw() {
@@ -554,7 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "#baffff44"  // soft blue
         ];
         const bubbles = [];
-        const maxBubbles = 5;
+        const maxBubbles = 1;
         const gunRadius = 20; // Gun radius at the left-top
 
         function randomBetween(a, b) {
