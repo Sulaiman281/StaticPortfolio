@@ -364,6 +364,18 @@ footer {
   margin: 0 8px;
 }
 
+.footer-legal a {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  font-size: 0.9em !important;
+  border-bottom: 1px solid transparent !important;
+  transition: border-color 0.2s !important;
+}
+
+.footer-legal a:hover {
+  border-bottom-color: var(--accent) !important;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -1200,4 +1212,149 @@ body {
   transform: scale(1.045) translateY(-4px);
   box-shadow: 0 8px 32px #00cfa033, 0 2px 8px #0002;
   z-index: 2;
+}
+
+/* Privacy Policy Page Styles */
+.privacy-policy-page {
+  min-height: 100vh;
+  padding: 2em 0;
+  position: relative;
+  z-index: 1;
+}
+
+.privacy-policy-page .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2em;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 3em;
+  padding-top: 2em;
+}
+
+.privacy-header h1 {
+  font-size: 2.5em;
+  color: var(--accent);
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+.last-updated {
+  color: var(--text2);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.privacy-content {
+  background: var(--bg2);
+  border-radius: 16px;
+  padding: 3em;
+  margin-bottom: 2em;
+  box-shadow: 0 4px 24px #0004;
+  line-height: 1.7;
+}
+
+.privacy-content h2 {
+  color: var(--accent);
+  font-size: 1.4em;
+  margin: 2em 0 1em 0;
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5em;
+}
+
+.privacy-content h2:first-of-type {
+  margin-top: 0;
+}
+
+.privacy-content h3 {
+  color: var(--text);
+  font-size: 1.2em;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.privacy-content p {
+  color: var(--text2);
+  margin-bottom: 1.2em;
+  text-align: justify;
+}
+
+.privacy-content ul {
+  color: var(--text2);
+  margin: 1em 0 1.5em 2em;
+  list-style-type: disc;
+}
+
+.privacy-content li {
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+}
+
+.privacy-content strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.privacy-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.privacy-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.contact-info {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 1.5em;
+  margin: 1.5em 0;
+  border-left: 4px solid var(--accent);
+}
+
+.contact-info p {
+  margin-bottom: 0.5em;
+}
+
+.contact-info strong {
+  color: var(--accent);
+}
+
+.privacy-footer {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 1.5em;
+  margin-top: 2em;
+  text-align: center;
+  border: 1px solid var(--accent);
+}
+
+.privacy-footer p {
+  color: var(--text2);
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Responsive design for privacy policy */
+@media (max-width: 768px) {
+  .privacy-policy-page .container {
+    padding: 0 1em;
+  }
+  
+  .privacy-content {
+    padding: 2em 1.5em;
+  }
+  
+  .privacy-header h1 {
+    font-size: 2em;
+  }
+  
+  .privacy-content h2 {
+    font-size: 1.3em;
+  }
 }

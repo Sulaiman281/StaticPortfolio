@@ -306,7 +306,13 @@ function renderFooter(data) {
                 )
             )
         ),
-        el("div", { style: "color:#444;margin-top:1em;" }, "© " + new Date().getFullYear() + " WitShells. All rights reserved.")
+        el("div", { class: "footer-legal", style: "margin-top:1em;text-align:center;" },
+            el("div", { style: "color:#444;margin-bottom:0.5em;" }, "© " + new Date().getFullYear() + " WitShells. All rights reserved."),
+            el("a", { 
+                href: "privacy-policy.html", 
+                style: "color:#00cfa0;text-decoration:none;font-size:0.9em;border-bottom:1px solid transparent;transition:border-color 0.2s;" 
+            }, "Privacy Policy")
+        )
     );
 }
 
