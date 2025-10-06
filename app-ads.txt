@@ -1,0 +1,8 @@
+# app-ads.txt for witshells.com
+# This site currently has no authorized sellers of app inventory.
+# Keep this file at: https://witshells.com/app-ads.txt
+# Add entries only when you have real relationships with ad partners.
+# Format: advertising_system_domain, publisher_id, DIRECT|RESELLER, certification_authority_id
+
+# Optional contact for ad-tech inquiries:
+# contact=sayedsulaiman607@gmail.com
