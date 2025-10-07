@@ -2,53 +2,96 @@ window.siteData = {
     siteTitle: "WitShells",
     favicon: "images/favicon.png",
     about: {
-        title: "WitShells",
-        subtitle: "Partners in Innovation & Code",
+        title: "Unity Game Development and 3D Simulations that Scale",
+        subtitle: "Unity developer + backend engineer for multiplayer, microservices, REST APIs, Docker, AWS",
         description: `
-        WitShells is a creative studio led by a passionate husband-wife duo. We blend technical expertise and imagination to build games, apps, and digital solutions that stand out.<br><br>
-        From game development and UI/UX to blockchain and AI automation, we turn ideas into reality—together.
+          Build, optimize, and ship production-ready games and simulations.<br>
+          • Unity 2D/3D, WebGL, VR • Multiplayer (Netcode/Mirror/Photon)<br>
+          • Microservices & REST APIs • Docker • AWS • CI/CD
         `,
+        long: `
+          We build high-performance Unity games and realistic 3D simulations backed by scalable microservices.
+          From WebGL and mobile to VR, we design gameplay, optimize performance, and ship reliable backends.<br><br>
+          <strong>Tech stack:</strong> Unity (C#), Netcode/Mirror/Photon, ASP.NET Core/Spring Boot, REST APIs,
+          PostgreSQL/MongoDB, Redis, RabbitMQ, Docker, AWS (ECS/Lambda/API Gateway), GitHub Actions CI/CD.<br>
+          <strong>Results:</strong> Delivered 50+ projects with 4.3–5★ ratings. Let’s ship something great—on time and on budget.
+        `
+    },
+    // New: WitCoin portfolio section content
+    witcoin: {
+        id: "witcoin",
+        title: "WitCoin — Powering the Future of Witshells Ecosystem",
+        tagline: "WitCoin — The Energy Behind the Witshells Universe.",
+        logo: "images/Wit-Logo.png", // Note: file exists as 'Wit-Logo.png' (case-sensitive on GitHub Pages)
+        overview: `
+            <p><strong>WitCoin</strong> is the native token of the Witshells ecosystem — starting with a cloud mining app where users can mine WitCoins and join <em>prize pools</em> to compete for real-world rewards or additional WitCoins.</p>
+            <p>WitCoin isn’t just another digital token — it’s the core economy that will power upcoming Witshells experiences, from city-scale simulations to metaverse-scale creativity.</p>
+        `,
+        features: [
+            { icon: "☁️", title: "Cloud Mining", desc: "Earn WitCoins through efficient cloud-based mining simulation." },
+            { icon: "🏆", title: "Prize Pools", desc: "Use mined coins to join reward pools with real or in‑game value." },
+            { icon: "🔐", title: "Secure Wallet System", desc: "Manage all assets and transactions safely." },
+            { icon: "⚙️", title: "Modern Tech", desc: "Unity 3D + ASP.NET Core + Dockerized microservices." },
+            { icon: "🌍", title: "Cross‑Platform", desc: "Android & WebGL." }
+        ],
+        future: [
+            {
+                name: "Witshells‑City",
+                description: "A massive open‑world simulation combining real‑life jobs, city economics, and role‑play (Cops vs. Robbers, professions, housing, and business systems). The entire game economy runs on WitCoin, creating a living, player‑driven marketplace."
+            },
+            {
+                name: "Witshells Mega Project",
+                description: "A platform where anyone can create and publish 3D simulations for VR/AR — like uploading YouTube videos — and monetize with WitCoin on Wit Cloud Chain, our scalable blockchain for creativity."
+            }
+        ],
+        // illustration: "images/pic_bw.png", // Placeholder concept art; replace when ready
+        cta: {
+            label: "Explore Witshells Projects",
+            link: "#featured"
+        }
     },
     services: {
         title: "Services",
         _items: [
             {
                 name: "Game Development",
-                description: "Expert game development for Android, VR, and WebGL platforms. We deliver high-performance, optimized code and captivating gameplay to bring your ideas to life.",
+                description: "Unity 2D/3D, WebGL, VR, multiplayer (Netcode/Mirror/Photon), performance profiling, Addressables, CI/CD.",
                 icon: "images/console.png",
-                skill: 99 // percent
+                skill: 99
             },
             {
-                name: "Backend Programming",
-                description: "Professional backend development including custom REST APIs and microservices for any platform. We build scalable, secure, and efficient backend solutions for startups to enterprise-level applications.",
+                name: "3D Simulation & Digital Twins",
+                description: "Real-time 3D simulation, physics systems, sensor modeling, visualization dashboards, stakeholder-ready WebGL demos.",
+                icon: "images/ai.png",
+                skill: 98
+            },
+            {
+                name: "Backend Microservices & REST APIs",
+                description: "ASP.NET Core/Spring Boot microservices, REST APIs, OAuth2/JWT, PostgreSQL/MongoDB, Redis, RabbitMQ, Docker, AWS.",
                 icon: "images/web-development.png",
                 skill: 99
             },
             {
-                name: "Mentorship & Teaching",
-                description: "Personalized programming mentorship and training in basic programming languages, Unity game development, and blockchain technology. Learn from industry experts at your own pace.",
+                name: "Mentorship & Training",
+                description: "Unity, C#, game architecture, code reviews, and best practices for teams and individuals.",
                 icon: "images/team.png",
                 skill: 99
             },
             {
                 name: "Blockchain Development",
-                description: "Blockchain solutions including smart contract development, decentralized applications (dApps), and seamless blockchain integration for your business needs.",
+                description: "Smart contracts, NFT minting/trading, wallet integrations, and secure web3 flows.",
                 icon: "images/blockchain.png",
-                skill: 99
+                skill: 95
             },
             {
                 name: "AI Automation",
-                description: "AI automation services to streamline your workflow. We create intelligent tools and solutions that boost productivity and efficiency for businesses of all sizes.",
+                description: "ETL pipelines, content automation, background jobs, analytics integrations, and workflow tools.",
                 icon: "images/ai.png",
-                skill: 99
-            },
+                skill: 95
+            }
         ],
-        get items() {
-            return this._items;
-        },
-        set items(value) {
-            this._items = value;
-        },
+        get items() { return this._items; },
+        set items(v) { this._items = v; }
     },
     portfolio: {
         title: "Portfolio Games",
@@ -220,6 +263,12 @@ window.siteData = {
                 label: "sayedsulaiman607@gmail.com"
             },
             {
+                type: "Calendly",
+                url: "https://calendly.com/witshells/30min",
+                icon: "images/icon-email.png",
+                label: "Book a 15‑min Call"
+            },
+            {
                 type: "LinkedIn",
                 url: "https://www.linkedin.com/in/syed-suleman-shah/",
                 icon: "images/linkedin logo.png",
@@ -258,4 +307,11 @@ window.siteData = {
             link: "https://wise.com/pay/me/syeds3242" // your Wise payment link
         }
     },
+    // Add CTA config for hero buttons
+    cta: {
+        primary: "Book a 15‑min Call",
+        primaryLink: "https://calendly.com/witshells/30min",
+        secondary: "Get a Project Quote",
+        secondaryLink: "mailto:sayedsulaiman607@gmail.com?subject=Project%20Quote%20Request"
+    }
 };

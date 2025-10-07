@@ -27,7 +27,18 @@ function renderHero(data) {
             el("h1", {}, data.about.title),
             el("div", { class: "subtitle" }, data.about.subtitle),
             el("div", { class: "desc", html: data.about.description }),
-            // el("a", { href: data.about.resumeUrl, class: "resume-btn", target: "_blank" }, "View Resume")
+            el("div", { class: "cta-buttons" },
+                data.cta?.primary ? el("a", {
+                    href: data.cta.primaryLink,
+                    target: "_blank",
+                    rel: "noopener",
+                    class: "btn btn-primary"
+                }, data.cta.primary) : null,
+                data.cta?.secondary ? el("a", {
+                    href: data.cta.secondaryLink,
+                    class: "btn btn-secondary"
+                }, data.cta.secondary) : null
+            )
         )
     );
 }
@@ -51,6 +62,59 @@ function renderServices(data) {
             )
         )
     );
+}
+
+function renderWitCoin(data) {
+    const wc = data.witcoin;
+    if (!wc) return null;
+
+    // Hero with centered logo and tagline
+    const hero = el("div", { class: "witcoin-hero" },
+        el("img", { src: wc.logo, alt: "WitCoin token logo for Witshells ecosystem", class: "witcoin-logo" }),
+        el("h2", { class: "witcoin-title" }, wc.title),
+        el("p", { class: "witcoin-tagline" }, wc.tagline),
+        el("div", { class: "witcoin-badges" },
+            el("span", { class: "badge badge-coming", title: "Feature status" }, "Coming Soon")
+        )
+    );
+
+    // Overview + single-column layout (no illustration)
+    const split = el("div", { class: "witcoin-split" },
+        el("div", { class: "witcoin-left" },
+            el("div", { class: "witcoin-overview", html: wc.overview }),
+            el("div", { class: "witcoin-features" },
+                ...wc.features.map(f =>
+                    el("div", { class: "witcoin-feature-card" },
+                        el("div", { class: "feat-icon" }, f.icon),
+                        el("div", { class: "feat-content" },
+                            el("div", { class: "feat-title" }, f.title),
+                            el("div", { class: "feat-desc" }, f.desc)
+                        )
+                    )
+                )
+            )
+        )
+    );
+
+    // Future projects list
+    const future = el("div", { class: "witcoin-future" },
+        el("h3", {}, "Future of WitCoin"),
+        el("div", { class: "future-cards" },
+            ...wc.future.map(p =>
+                el("div", { class: "future-card" },
+                    el("h4", {}, p.name),
+                    el("p", {}, p.description)
+                )
+            )
+        )
+    );
+
+    // CTA
+    const cta = el("div", { class: "witcoin-cta" },
+        el("a", { href: wc.cta.link, class: "btn btn-primary" }, wc.cta.label)
+    );
+
+    return el("section", { id: wc.id, class: "section-witcoin" }, hero, split, future, cta);
 }
 
 function renderPortfolio(data) {
@@ -308,11 +372,18 @@ function renderFooter(data) {
         ),
         el("div", { class: "footer-legal", style: "margin-top:1em;text-align:center;" },
             el("div", { style: "color:#444;margin-bottom:0.5em;" }, "© " + new Date().getFullYear() + " WitShells. All rights reserved."),
-            el("a", { 
-                href: "privacy-policy.html", 
-                style: "color:#00cfa0;text-decoration:none;font-size:0.9em;border-bottom:1px solid transparent;transition:border-color 0.2s;" 
+            el("a", {
+                href: "privacy-policy.html",
+                style: "color:#00cfa0;text-decoration:none;font-size:0.9em;border-bottom:1px solid transparent;transition:border-color 0.2s;"
             }, "Privacy Policy")
         )
+    );
+}
+
+function renderAbout(data) {
+    return el("section", { id: "about" },
+        el("h2", {}, "About WitShells"),
+        el("div", { class: "desc", html: data.about.long })
     );
 }
 
@@ -320,8 +391,10 @@ function renderPage(data) {
     const app = document.getElementById("app");
     app.append(
         renderHero(data),
+        renderAbout(data),
         renderTeam(data),
         renderServices(data),
+        renderWitCoin(data),
         renderPortfolio(data),
         renderFeatured(data),
         renderFeedbacks(data),
@@ -447,263 +520,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("wiseLink").href = wise.link;
     }
 
-    // Smoke effect background (more realistic, white smoke, more particles, always behind content)
-    (function () {
-        const isMobile = /android|iphone|ipad|ipod|opera mini|iemobile|mobile/i.test(navigator.userAgent);
-        if (isMobile) return; // Do not render bubbles on mobile
+    // Particle background disabled per request
 
-
-        const canvas = document.getElementById('smoke-bg');
-        const ctx = canvas.getContext('2d');
-        let w = window.innerWidth, h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
-        canvas.width = w;
-        canvas.height = h;
-        canvas.style.position = "absolute";
-        canvas.style.top = "0";
-        canvas.style.left = "0";
-        canvas.style.zIndex = "0";
-        canvas.style.pointerEvents = "none";
-        canvas.style.background = "transparent";
-
-        const colors = [
-            "#ffffff33", // soft white
-            "#baffff22", // soft blue
-            "#00cfa022"  // very soft teal
-        ];
-        const bubbles = [];
-        const maxBubbles = 1;
-        const gunRadius = 20;
-
-        function randomBetween(a, b) {
-            return a + Math.random() * (b - a);
-        }
-
-        function createBubble() {
-            const angle = randomBetween(Math.PI * 0.10, Math.PI * 0.35);
-            const baseX = randomBetween(-40, gunRadius);
-            const baseY = randomBetween(-40, gunRadius);
-            const speed = randomBetween(2, 6); // much slower
-            return {
-                x: baseX,
-                y: baseY,
-                r: randomBetween(18, 36),
-                alpha: randomBetween(0.10, 0.18),
-                speedX: Math.cos(angle) * speed,
-                speedY: Math.sin(angle) * speed,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                age: 0,
-                maxAge: randomBetween(800, 1800)
-            };
-        }
-
-        function emitBubbles() {
-            bubbles.push(createBubble());
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, w, h);
-            emitBubbles();
-
-            for (let i = bubbles.length - 1; i >= 0; i--) {
-                const b = bubbles[i];
-                b.x += b.speedX;
-                b.y += b.speedY;
-                b.speedX *= 0.995;
-                b.speedY *= 0.995;
-                b.age++;
-                let fade = Math.max(0, 1 - b.age / b.maxAge);
-
-                ctx.save();
-                ctx.globalAlpha = b.alpha * fade;
-                ctx.beginPath();
-                ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fillStyle = b.color;
-                ctx.shadowColor = "#fff";
-                ctx.shadowBlur = 16;
-                ctx.fill();
-                ctx.restore();
-
-                if (b.x - b.r > w || b.y - b.r > h || fade < 0.05) {
-                    bubbles.splice(i, 1);
-                }
-            }
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-    })();
-
-    // Bubble effect background: bubbles float, pop on cursor interaction
-    (function () {
-        const canvas = document.getElementById('smoke-bg');
-        const ctx = canvas.getContext('2d');
-        let w = window.innerWidth, h = window.innerHeight;
-        canvas.width = w;
-        canvas.height = h;
-        canvas.style.position = "fixed";
-        canvas.style.top = "0";
-        canvas.style.left = "0";
-        canvas.style.zIndex = "0";
-        canvas.style.pointerEvents = "none";
-        canvas.style.background = "transparent";
-
-        // Bubble colors (neon/cool)
-        const colors = [
-            "#00fff7cc", // neon cyan
-            "#00cfa0bb", // teal
-            "#fff",      // white
-            "#00e0ff88", // blue-cyan
-            "#00ffb388", // neon greenish
-            "#baffff44"  // soft blue
-        ];
-        const bubbles = [];
-        const maxBubbles = 1;
-        const gunRadius = 20; // Gun radius at the left-top
-
-        function randomBetween(a, b) {
-            return a + Math.random() * (b - a);
-        }
-
-        function createBubble() {
-            const angle = randomBetween(Math.PI * 0.10, Math.PI * 0.35); // Aim toward bottom-right
-            const baseX = randomBetween(-20, gunRadius);
-            const baseY = randomBetween(-20, gunRadius);
-            const speed = randomBetween(.5, 5);
-            return {
-                x: baseX,
-                y: baseY,
-                r: randomBetween(24, 48),
-                alpha: randomBetween(0.18, 0.32),
-                speedX: Math.cos(angle) * speed,
-                speedY: Math.sin(angle) * speed,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                age: 0,
-                maxAge: randomBetween(300, 3200),
-                popped: false
-            };
-        }
-
-        function emitBubbles() {
-            for (let i = 0; i < 4 + Math.floor(Math.random() * 3); i++) {
-                if (bubbles.length < maxBubbles) {
-                    bubbles.push(createBubble());
-                }
-            }
-        }
-
-        // Track cursor for popping
-        let cursor = { x: -1000, y: -1000 };
-        window.addEventListener("mousemove", e => {
-            cursor.x = e.clientX;
-            cursor.y = e.clientY;
-        });
-        window.addEventListener("mouseleave", () => {
-            cursor.x = -1000;
-            cursor.y = -1000;
-        });
-
-        function draw() {
-            ctx.clearRect(0, 0, w, h);
-            emitBubbles();
-
-            for (let i = bubbles.length - 1; i >= 0; i--) {
-                const b = bubbles[i];
-                // Move toward bottom-right, slow as it ages
-                b.x += b.speedX;
-                b.y += b.speedY;
-                // b.speedX *= 1.585;
-                // b.speedY *= 1.585;
-                b.age++;
-
-                // Pop if cursor is inside bubble and not already popped
-                if (!b.popped) {
-                    const dx = b.x - cursor.x;
-                    const dy = b.y - cursor.y;
-                    if (dx * dx + dy * dy < b.r * b.r) {
-                        b.popped = true;
-                        b.popFrame = 0;
-                    }
-                }
-
-                // Animate pop: scale up and fade out quickly
-                let fade = Math.max(0, 1 - b.age / b.maxAge);
-                let scale = 1;
-                if (b.popped) {
-                    b.popFrame = (b.popFrame || 0) + 1;
-                    scale = 1 + b.popFrame * 0.22 - Math.pow(b.popFrame * 0.13, 2); // scale up then shrink
-                    fade *= Math.max(0, 1 - b.popFrame / 8);
-                }
-
-                ctx.save();
-                ctx.globalAlpha = b.alpha * fade;
-
-                // Main bubble (transparent, with gradient)
-                let grad = ctx.createRadialGradient(b.x, b.y, b.r * scale * 0.2, b.x, b.y, b.r * scale);
-                grad.addColorStop(0, "#fff8");
-                grad.addColorStop(0.3, b.color);
-                grad.addColorStop(1, "#fff0");
-                ctx.beginPath();
-                ctx.arc(b.x, b.y, b.r * scale, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fillStyle = grad;
-                ctx.shadowColor = b.color;
-                ctx.shadowBlur = 32;
-                ctx.fill();
-
-                // Reflection highlight
-                ctx.globalAlpha = b.alpha * fade * 0.7;
-                ctx.beginPath();
-                ctx.ellipse(
-                    b.x - b.r * scale * 0.35,
-                    b.y - b.r * scale * 0.35,
-                    b.r * scale * 0.28,
-                    b.r * scale * 0.18,
-                    Math.PI / 6,
-                    0,
-                    Math.PI * 2
-                );
-                ctx.fillStyle = "#fff9";
-                ctx.fill();
-
-                // Bottom light effect
-                ctx.globalAlpha = b.alpha * fade * 0.18;
-                ctx.beginPath();
-                ctx.ellipse(
-                    b.x + b.r * scale * 0.18,
-                    b.y + b.r * scale * 0.38,
-                    b.r * scale * 0.32,
-                    b.r * scale * 0.14,
-                    Math.PI / 4,
-                    0,
-                    Math.PI * 2
-                );
-                ctx.fillStyle = "#fff";
-                ctx.fill();
-
-                ctx.restore();
-
-                // Remove if out of screen, faded, or popped and finished
-                if (
-                    b.x - b.r > w || b.y - b.r > h ||
-                    fade < 0.05 ||
-                    (b.popped && b.popFrame > 8)
-                ) {
-                    bubbles.splice(i, 1);
-                }
-            }
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-
-        window.addEventListener('resize', () => {
-            w = window.innerWidth;
-            h = window.innerHeight;
-            canvas.width = w;
-            canvas.height = h;
-        });
-    })();
 });
 
 function shouldShowTour() {
