@@ -129,6 +129,105 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(42, 221, 137, 0.2);
+}
+
+/* Featured Service Card - MCP+LLM */
+.service-card.featured-service {
+  flex: 1 1 100%;
+  max-width: 100%;
+  background: linear-gradient(135deg, #1a1d29 0%, #22272e 100%);
+  border: 2px solid var(--accent);
+  box-shadow: 0 8px 48px rgba(42, 221, 137, 0.3);
+  position: relative;
+  overflow: hidden;
+  padding: 32px 28px;
+}
+
+.service-card.featured-service::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), #00d4ff, var(--accent));
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.service-card.featured-service:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 64px rgba(42, 221, 137, 0.4);
+}
+
+.service-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  color: #000;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(42, 221, 137, 0.4);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.service-card.featured-service h3 {
+  font-size: 1.6rem;
+  margin: 12px 0 20px 0;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.service-highlight {
+  background: rgba(42, 221, 137, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.service-details {
+  text-align: left;
+  width: 100%;
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
+.service-details ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.service-details ul li {
+  padding: 8px 0;
+  padding-left: 8px;
+  border-bottom: 1px solid rgba(42, 221, 137, 0.1);
+}
+
+.service-details ul li:last-child {
+  border-bottom: none;
 }
 
 .service-card img {
@@ -1029,30 +1128,52 @@ body::after {
 /* New Floating Coffee Button Styles */
 .floating-coffee-btn {
   position: fixed;
-  right: 32px;
-  bottom: 90px;
+  right: 24px;
+  bottom: 24px;
   z-index: 9999;
   background: #ffdd00;
   color: #181a20;
-  font-weight: bold;
-  font-size: 1.08em;
-  padding: 0.85em 2.2em;
-  border-radius: 32px;
-  box-shadow: 0 4px 24px #ffdd0044;
-  text-decoration: none;
-  transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+  border: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 0.7em;
-  border: none;
+  justify-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 20px #ffdd0044;
+  transition: width 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  overflow: hidden;
+}
+
+.floating-coffee-btn .coffee-icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.floating-coffee-btn .coffee-label {
+  white-space: nowrap;
+  margin-left: 10px;
+  margin-right: 12px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  color: #181a20;
 }
 
 .floating-coffee-btn:hover {
+  width: 220px;
+  border-radius: 28px;
   background: #ffe066;
   box-shadow: 0 8px 32px #ffdd0066;
-  transform: translateY(-2px) scale(1.04);
-  color: #181a20;
+  transform: translateY(-4px);
+}
+
+.floating-coffee-btn:hover .coffee-label {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .coffee-modal {
