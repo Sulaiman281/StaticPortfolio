@@ -230,19 +230,7 @@
         const step2El = document.getElementById('step2');
         const requestBtn = document.getElementById('requestBtn');
         const confirmBtn = document.getElementById('confirmBtn');
-        const API_ORIGIN = new URL(API_BASE).origin;
-        const THIS_ORIGIN = window.location.origin;
 
-        // If served from a different origin than the API, show a helpful tip about CORS
-        if (API_ORIGIN !== THIS_ORIGIN) {
-            const tip = document.createElement('div');
-            tip.className = 'status-msg info';
-            tip.style.marginTop = '0';
-            tip.style.marginBottom = '1rem';
-            tip.innerText = `Heads up: This page is served from ${THIS_ORIGIN} and calls an API on ${API_ORIGIN}. The API must allow this origin (CORS) for requests to succeed.`;
-            const wrapper = document.querySelector('.delete-wrapper');
-            wrapper.insertBefore(tip, wrapper.firstChild);
-        }
 
         function setMessage(text, type = 'info') {
             messageDiv.textContent = text;
