@@ -7,6 +7,7 @@
 # Optional contact for ad-tech inquiries:
 # contact=sayedsulaiman607@gmail.com
 
+google.com, pub-5505051331408030, DIRECT, f08c47fec0942fa0
 aralego.com, par-BE7E667E3339AD6BC7BA2887D6E7227A, RESELLER
 contextweb.com, 562726, RESELLER, 89ff185a4c4e857c
 themediagrid.com, FALINO, RESELLER, 35d5010d7789b49d
@@ -196,11 +197,8 @@ appnexus.com, 14080, RESELLER, f5ab79cb980f11d1
 adiiix.com, par-BE7E667E3339AD6BC7BA2887D6E7227A, RESELLER
 rubiconproject.com, 26292, RESELLER, 0bfd66d529a55807
 rubiconproject.com, 18202, RESELLER, 0bfd66d529a55807
- onairglobal.com, 4357629, RESELLER
- loopme.com, 11605, RESELLER, 6c8d5f95897a5a3b
-
-# AdMob publisher account for WitShells
-google.com, pub-5505051331408030, DIRECT, f08c47fec0942fa0
+onairglobal.com, 4357629, RESELLER
+loopme.com, 11605, RESELLER, 6c8d5f95897a5a3b
 grouprvn.com, 420212011, RESELLER
 pubmatic.com, 160456, RESELLER, 5d62403b186f2ace
 app-stock.com, 384491, RESELLER
