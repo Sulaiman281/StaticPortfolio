@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>API Development & Integration Services | Unity 3D, ASP.NET Core, Java Spring, Node.js | WitShells</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Professional API development and integration services for Unity 3D games, web applications, and enterprise software. Custom REST APIs, microservices, and seamless integrations with ASP.NET Core, Java Spring Boot, and Node.js. Starting from $300 for integrations, $1500 for custom development.">
+  <meta name="keywords"
+    content="API development, API integration, Unity 3D API, REST API services, ASP.NET Core API, Java Spring Boot API, Node.js API, microservices development, custom API solutions, game API integration, web API development, enterprise API services">
+  <meta name="author" content="Syed Suleman Shah, WitShells Team">
+
+  <meta property="og:title" content="Professional API Development & Integration Services | Unity 3D & Backend APIs">
+  <meta property="og:description"
+    content="Custom API solutions for Unity 3D games and enterprise applications. Expert development with ASP.NET Core, Java Spring, Node.js. Integration services from $300, custom development from $1500.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://witshells.com/api-services.html">
+  <meta property="og:image" content="https://witshells.com/images/og-image.png">
+  <link rel="canonical" href="https://witshells.com/api-services.html">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W63VJ0EKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-6W63VJ0EKB');
+  </script>
+
+  <style>
+    :root {
+      /* Light Mode Colors (Default) */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #2c3e50;
+      --text-secondary: #666666;
+      --card-bg: #ffffff;
+      --border-color: #e1e8ed;
+      --accent-color: #2add89;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+    }
+
+    /* Dark mode colors based on system preference */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #181a20;
+        --bg-secondary: #22272e;
+        --text-primary: #f1f1f1;
+        --text-secondary: #b0b0b0;
+        --card-bg: #23262f;
+        --border-color: #2c2f38;
+        --accent-color: #2add89;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    /* Override system preference when theme is explicitly set */
+    [data-theme="light"] {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #2c3e50;
+      --text-secondary: #666666;
+      --card-bg: #ffffff;
+      --border-color: #e1e8ed;
+      --accent-color: #2add89;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Colors */
+      --bg-primary: #181a20;
+      --bg-secondary: #22272e;
+      --text-primary: #f1f1f1;
+      --text-secondary: #b0b0b0;
+      --card-bg: #23262f;
+      --border-color: #2c2f38;
+      --accent-color: #2add89;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .api-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .api-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .api-hero .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      color: white;
+    }
+
+    /* Service Introduction Section */
+    .service-intro {
+      padding: 4rem 2rem;
+      background: var(--bg-secondary);
+    }
+
+    .service-intro h2 {
+      color: var(--accent-color);
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
+    }
+
+    .service-intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .service-intro-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent-color);
+      box-shadow: var(--shadow);
+    }
+
+    .service-intro-card h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .service-intro-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-intro-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-intro-card ul li {
+      padding: 0.3rem 0;
+      color: var(--text-secondary);
+    }
+
+    .service-intro-card ul li strong {
+      color: var(--text-primary);
+    }
+
+    /* Deployment Section */
+    .deployment-section {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .deployment-section h3 {
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .deployment-section p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .deployment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .deployment-item {
+      background: var(--bg-secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .deployment-item h4 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .deployment-item p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    /* What's Included Section */
+    .whats-included {
+      margin-top: 3rem;
+    }
+
+    .whats-included h3 {
+      text-align: center;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+    }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .included-item {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .included-item .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .included-item strong {
+      color: var(--text-primary);
+    }
+
+    .included-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .service-selection {
+      padding: 4rem 2rem;
+      background: var(--bg-primary);
+    }
+
+    .service-selection h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
+      color: var(--accent-color);
+    }
+
+    .service-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-option {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+
+    .service-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(42, 221, 137, 0.15);
+    }
+
+    .service-option.selected {
+      border-color: var(--accent-color);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(42, 221, 137, 0.3);
+    }
+
+    .service-option h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .service-option .price-range {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .service-option .description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-option .features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-option .features li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+    }
+
+    .service-option .features li:before {
+      content: "✓";
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .form-section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-primary);
+    }
+
+    .form-container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 3rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--accent-color);
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .integration-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .integration-option {
+      padding: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    .integration-option:hover {
+      border-color: var(--accent-color);
+    }
+
+    .integration-option.selected {
+      border-color: var(--accent-color);
+      background: rgba(42, 221, 137, 0.1);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .tech-stack {
+      padding: 3rem 2rem;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      text-align: center;
+    }
+
+    .tech-stack h2 {
+      color: var(--accent-color);
+    }
+
+    .tech-stack p {
+      color: var(--text-secondary);
+    }
+
+    .tech-icons {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-icon strong {
+      color: var(--text-primary);
+    }
+
+    .tech-icon span {
+      color: var(--text-secondary);
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      padding: 0.8rem 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .back-btn:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: translateX(-5px);
+    }
+
+    .theme-toggle-btn {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--accent-color);
+      color: white;
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      .api-hero h1 {
+        font-size: 2rem;
+      }
+
+      .service-options {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .service-option {
+        padding: 2rem;
+      }
+
+      .form-container {
+        padding: 2rem;
+      }
+
+      .tech-icons {
+        gap: 2rem;
+      }
+
+      .service-intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .deployment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .included-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="back-btn" onclick="window.location.href='index.html'">
+    ← Back to Home
+  </button>
+
+  <!-- Dark/Light Mode Toggle -->
+  <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+    <span class="theme-icon" id="themeIcon">🌙</span>
+  </button>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="api-hero">
+      <h1>Professional API Development & Integration Services</h1>
+      <div class="subtitle">
+        Custom REST APIs, seamless integrations, and scalable backend solutions for Unity 3D games, web applications, and enterprise software
+      </div>
+    </section>
+
+    <!-- Service Introduction -->
+    <section class="service-intro">
+      <div class="container">
+        <h2>Why Choose Our API Solutions?</h2>
+        
+        <div class="service-intro-grid">
+          
+          <!-- API Integration Card -->
+          <div class="service-intro-card">
+            <h3>🔗 API Integration Services</h3>
+            <p>
+              Seamlessly connect your applications with third-party services, payment gateways, social platforms, or existing business systems. We specialize in Unity 3D game integrations, web applications, and desktop software connections.
+            </p>
+            <ul>
+              <li><strong>✓ Unity 3D Games:</strong> Leaderboards, multiplayer, analytics, monetization</li>
+              <li><strong>✓ Web Applications:</strong> Payment systems, social login, data synchronization</li>
+              <li><strong>✓ Enterprise Software:</strong> CRM integration, ERP connections, data migration</li>
+              <li><strong>✓ Mobile Apps:</strong> Push notifications, cloud storage, authentication</li>
+            </ul>
+          </div>
+
+          <!-- Custom API Development Card -->
+          <div class="service-intro-card">
+            <h3>⚡ Custom API Development</h3>
+            <p>
+              Build scalable, secure REST APIs from scratch tailored to your exact business requirements. We architect solutions that grow with your business, from startup MVPs to enterprise-grade systems handling millions of requests.
+            </p>
+            <ul>
+              <li><strong>✓ Microservices Architecture:</strong> Scalable, maintainable, fault-tolerant systems</li>
+              <li><strong>✓ Database Design:</strong> Optimized schemas, indexing, performance tuning</li>
+              <li><strong>✓ Security Implementation:</strong> JWT, OAuth2, API rate limiting, encryption</li>
+              <li><strong>✓ Real-time Features:</strong> WebSockets, SignalR, live updates</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Deployment & Hosting Section -->
+        <div class="deployment-section">
+          <h3>🚀 Professional Deployment & Hosting Solutions</h3>
+          <p>
+            We don't just build your APIs—we ensure they're production-ready and properly deployed for maximum performance and reliability.
+          </p>
+          
+          <div class="deployment-grid">
+            
+            <div class="deployment-item">
+              <h4>Docker Containerization</h4>
+              <p>
+                Your APIs are packaged in Docker containers for consistent deployment across any environment—from your local development machine to enterprise cloud infrastructure.
+              </p>
+            </div>
+
+            <div class="deployment-item">
+              <h4>Custom VPS Deployment</h4>
+              <p>
+                We deploy directly to your custom VPS servers with full configuration, monitoring, and security hardening. Your data stays on your infrastructure, giving you complete control.
+              </p>
+            </div>
+
+            <div class="deployment-item">
+              <h4>Local & Office Setup</h4>
+              <p>
+                Need to run APIs on your local network? We'll guide you through setting up secure API servers on your office machines or home network with proper port forwarding and SSL certificates.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- What You Get Section -->
+        <div class="whats-included">
+          <h3>What's Included in Every Project</h3>
+          <div class="included-grid">
+            
+            <div class="included-item">
+              <div class="icon">📚</div>
+              <strong>Complete Documentation</strong>
+              <p>API documentation, integration guides, and code examples</p>
+            </div>
+
+            <div class="included-item">
+              <div class="icon">🔒</div>
+              <strong>Security Best Practices</strong>
+              <p>Authentication, encryption, rate limiting, and vulnerability protection</p>
+            </div>
+
+            <div class="included-item">
+              <div class="icon">⚡</div>
+              <strong>Performance Optimization</strong>
+              <p>Caching, database optimization, and load balancing configuration</p>
+            </div>
+
+            <div class="included-item">
+              <div class="icon">🛠️</div>
+              <strong>Post-Launch Support</strong>
+              <p>30 days of free bug fixes and technical support after deployment</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Service Selection -->
+    <section class="service-selection">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #2c3e50;">Choose Your Service</h2>
+        <div class="service-options">
+          <!-- API Integration -->
+          <div class="service-option" id="integration-option" onclick="selectService('integration')">
+            <h3>🔗 API Integration</h3>
+            <div class="price-range">$300 - $5,000</div>
+            <div class="description">
+              Seamlessly integrate existing APIs into your Unity 3D games, websites, or software applications with our proven solutions.
+            </div>
+            <ul class="features">
+              <li>Unity 3D game integration</li>
+              <li>Website & web app integration</li>
+              <li>Desktop & mobile software integration</li>
+              <li>Authentication & security setup</li>
+              <li>Error handling & optimization</li>
+              <li>Documentation & support</li>
+            </ul>
+            <div style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">
+              <strong>Pricing based on:</strong> Number of API endpoints (1-50+ endpoints)
+            </div>
+          </div>
+
+          <!-- API Development -->
+          <div class="service-option" id="development-option" onclick="selectService('development')">
+            <h3>⚡ Custom API Development</h3>
+            <div class="price-range">$1,500 - $1M+</div>
+            <div class="description">
+              Build custom REST APIs and microservices from scratch, tailored to your specific business requirements and scale.
+            </div>
+            <ul class="features">
+              <li>ASP.NET Core / Java Spring / Node.js</li>
+              <li>Database design & optimization</li>
+              <li>Authentication & authorization</li>
+              <li>Scalable microservices architecture</li>
+              <li>Cloud deployment (AWS/Azure)</li>
+              <li>API documentation & testing</li>
+            </ul>
+            <div style="margin-top: 1.5rem; color: #666; font-size: 0.9rem;">
+              <strong>Pricing based on:</strong> Project complexity, features, and scale
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form-section" style="display: none;">
+      <div class="form-container">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">Get Your Custom Quote</h2>
+        <form id="api-form">
+          <!-- Basic Information -->
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company/Organization</label>
+            <input type="text" id="company" name="company">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <!-- Service Type (Hidden, set by selection) -->
+          <input type="hidden" id="service-type" name="serviceType">
+
+          <!-- Integration Specific Fields -->
+          <div id="integration-fields" style="display: none;">
+            <div class="form-group">
+              <label>Integration Type *</label>
+              <div class="integration-options">
+                <div class="integration-option" onclick="selectIntegration('unity3d')">
+                  <strong>Unity 3D Game</strong>
+                  <div>Game integration</div>
+                </div>
+                <div class="integration-option" onclick="selectIntegration('website')">
+                  <strong>Website/Web App</strong>
+                  <div>Web integration</div>
+                </div>
+                <div class="integration-option" onclick="selectIntegration('software')">
+                  <strong>Desktop/Mobile Software</strong>
+                  <div>Application integration</div>
+                </div>
+              </div>
+              <input type="hidden" id="integration-type" name="integrationType">
+            </div>
+
+            <div class="form-group">
+              <label for="endpoints">Estimated Number of API Endpoints *</label>
+              <select id="endpoints" name="endpoints">
+                <option value="">Select range</option>
+                <option value="1-5">1-5 endpoints ($300-$800)</option>
+                <option value="6-15">6-15 endpoints ($800-$2,000)</option>
+                <option value="16-30">16-30 endpoints ($2,000-$3,500)</option>
+                <option value="31-50">31-50 endpoints ($3,500-$5,000)</option>
+                <option value="50+">50+ endpoints (Contact for quote)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Development Specific Fields -->
+          <div id="development-fields" style="display: none;">
+            <div class="form-group">
+              <label for="tech-preference">Preferred Technology Stack</label>
+              <select id="tech-preference" name="techPreference">
+                <option value="">Select technology</option>
+                <option value="aspnet-core">ASP.NET Core (C#)</option>
+                <option value="java-spring">Java Spring Boot</option>
+                <option value="nodejs">Node.js</option>
+                <option value="no-preference">No preference (Recommend best fit)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="project-scale">Project Scale & Complexity</label>
+              <select id="project-scale" name="projectScale">
+                <option value="">Select scale</option>
+                <option value="small">Small project ($1,500-$10,000)</option>
+                <option value="medium">Medium project ($10,000-$50,000)</option>
+                <option value="large">Large project ($50,000-$200,000)</option>
+                <option value="enterprise">Enterprise project ($200,000+)</option>
+                <option value="module">Add module to existing API (Contact for quote)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="features">Required Features (Select all that apply)</label>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.5rem; margin-top: 1rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="authentication"> User Authentication
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="database"> Database Integration
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="payments"> Payment Processing
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="notifications"> Push Notifications
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="analytics"> Analytics & Reporting
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="cloud"> Cloud Deployment
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="realtime"> Real-time Updates
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                  <input type="checkbox" name="features" value="security"> Advanced Security
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Common Fields -->
+          <div class="form-group">
+            <label for="timeline">Project Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP (Rush fee may apply)</option>
+              <option value="1-week">Within 1 week</option>
+              <option value="2-weeks">Within 2 weeks</option>
+              <option value="1-month">Within 1 month</option>
+              <option value="2-3-months">2-3 months</option>
+              <option value="flexible">Flexible timeline</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget Range (Optional)</label>
+            <input type="text" id="budget" name="budget" placeholder="e.g., $5,000 - $10,000">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Project Description *</label>
+            <textarea id="description" name="description" placeholder="Please describe your project requirements, goals, and any specific technical details..." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            Get Free Quote & Timeline
+          </button>
+        </form>
+
+        <div id="success-message" style="display: none; text-align: center; color: #00cfa0; margin-top: 2rem;">
+          <h3>Quote Request Sent Successfully! ✅</h3>
+          <p>Your detailed quote request has been sent to our team. We'll review your requirements and get back to you within 24 hours with a comprehensive proposal and timeline.</p>
+          <p><strong>What happens next:</strong></p>
+          <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+            <li>📧 You'll receive a confirmation email shortly</li>
+            <li>📋 We'll analyze your project requirements</li>
+            <li>💰 Prepare a detailed quote with pricing</li>
+            <li>⏰ Provide accurate timeline estimates</li>
+            <li>📞 Schedule a consultation call if needed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+      <h2>Our Technology Stack & Infrastructure</h2>
+      <p>We work with cutting-edge technologies to deliver robust, scalable solutions</p>
+      <div class="tech-icons">
+        <div class="tech-icon">
+          <strong>ASP.NET Core</strong>
+          <span>C# • Microservices</span>
+        </div>
+        <div class="tech-icon">
+          <strong>Java Spring</strong>
+          <span>Spring Boot • JPA</span>
+        </div>
+        <div class="tech-icon">
+          <strong>Node.js</strong>
+          <span>Express • TypeScript</span>
+        </div>
+        <div class="tech-icon">
+          <strong>Unity 3D</strong>
+          <span>C# • Integration</span>
+        </div>
+        <div class="tech-icon">
+          <strong>Docker & Kubernetes</strong>
+          <span>Containerization • Orchestration</span>
+        </div>
+        <div class="tech-icon">
+          <strong>Cloud Platforms</strong>
+          <span>AWS • Azure • GCP</span>
+        </div>
+      </div>
+      
+      <!-- Deployment Options -->
+      <div style="margin-top: 3rem; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px;">
+        <h3 style="color: white; margin-bottom: 1.5rem; text-align: center;">Deployment & Infrastructure Options</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+          
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐳</div>
+            <strong>Docker Containers</strong>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">
+              Consistent deployment across all environments with containerized applications
+            </p>
+          </div>
+
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">☸️</div>
+            <strong>Kubernetes</strong>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">
+              Auto-scaling, load balancing, and high availability for enterprise applications
+            </p>
+          </div>
+
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🖥️</div>
+            <strong>Custom VPS</strong>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">
+              Deploy to your own servers with full control and data sovereignty
+            </p>
+          </div>
+
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏠</div>
+            <strong>Local Deployment</strong>
+            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">
+              Set up secure APIs on your local network or office infrastructure
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let selectedService = null;
+    let selectedIntegrationType = null;
+    const submissionLog = [];
+
+    function selectService(serviceType) {
+      selectedService = serviceType;
+      
+      // Update UI
+      document.querySelectorAll('.service-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      document.getElementById(serviceType + '-option').classList.add('selected');
+      
+      // Show form
+      document.getElementById('form-section').style.display = 'block';
+      document.getElementById('service-type').value = serviceType;
+      
+      // Show/hide relevant fields
+      if (serviceType === 'integration') {
+        document.getElementById('integration-fields').style.display = 'block';
+        document.getElementById('development-fields').style.display = 'none';
+      } else {
+        document.getElementById('integration-fields').style.display = 'none';
+        document.getElementById('development-fields').style.display = 'block';
+      }
+      
+      // Scroll to form
+      document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function selectIntegration(integrationType) {
+      selectedIntegrationType = integrationType;
+      
+      document.querySelectorAll('.integration-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      event.target.closest('.integration-option').classList.add('selected');
+      
+      document.getElementById('integration-type').value = integrationType;
+    }
+
+    document.getElementById('api-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending Quote Request...';
+      
+      // Collect form data
+      const formData = new FormData(this);
+      const data = {
+        timestamp: new Date().toISOString(),
+        serviceType: selectedService,
+        name: formData.get('name'),
+        email: formData.get('email'),
+        company: formData.get('company') || 'Not provided',
+        phone: formData.get('phone') || 'Not provided',
+        integrationType: formData.get('integrationType') || 'N/A',
+        endpoints: formData.get('endpoints') || 'N/A',
+        techPreference: formData.get('techPreference') || 'N/A',
+        projectScale: formData.get('projectScale') || 'N/A',
+        features: Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value),
+        timeline: formData.get('timeline') || 'Not specified',
+        budget: formData.get('budget') || 'Not specified',
+        description: formData.get('description')
+      };
+      
+      // Log to console and localStorage
+      console.log('API Service Inquiry:', data);
+      submissionLog.push(data);
+      localStorage.setItem('apiServiceInquiries', JSON.stringify(submissionLog));
+      
+      // Format email content
+      const emailBody = formatEmailBody(data);
+      const subject = `API Service Quote Request - ${data.serviceType === 'integration' ? 'Integration' : 'Development'} - ${data.name}`;
+      
+      // Send email via API
+      try {
+        const response = await fetch('https://witcoin.witshells.com/api/PublicStatus/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            to: 'sayedsulaiman607@gmail.com',
+            subject: subject,
+            body: emailBody
+          })
+        });
+
+        if (response.ok) {
+          // Show success message
+          document.getElementById('api-form').style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+        } else {
+          throw new Error('Failed to send email');
+        }
+      } catch (error) {
+        console.error('Error sending email:', error);
+        alert('There was an error sending your quote request. Please try again or contact us directly.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get Free Quote & Timeline';
+      }
+    });
+
+    // Format email body with proper structure
+    function formatEmailBody(data) {
+      const serviceTypeTitle = data.serviceType === 'integration' ? 'API Integration Service' : 'Custom API Development Service';
+      
+      let body = `NEW API SERVICE QUOTE REQUEST\n\n`;
+      body += `==========================================\n`;
+      body += `SERVICE TYPE: ${serviceTypeTitle}\n`;
+      body += `SUBMITTED: ${new Date(data.timestamp).toLocaleString()}\n`;
+      body += `==========================================\n\n`;
+      
+      body += `CLIENT INFORMATION:\n`;
+      body += `-------------------\n`;
+      body += `Name: ${data.name}\n`;
+      body += `Email: ${data.email}\n`;
+      body += `Company: ${data.company}\n`;
+      body += `Phone: ${data.phone}\n\n`;
+      
+      if (data.serviceType === 'integration') {
+        body += `INTEGRATION REQUIREMENTS:\n`;
+        body += `------------------------\n`;
+        if (data.integrationType !== 'N/A') {
+          const integrationTypes = {
+            'unity3d': 'Unity 3D Game Integration',
+            'website': 'Website/Web Application Integration',
+            'software': 'Desktop/Mobile Software Integration'
+          };
+          body += `Integration Type: ${integrationTypes[data.integrationType] || data.integrationType}\n`;
+        }
+        if (data.endpoints !== 'N/A') {
+          body += `API Endpoints: ${data.endpoints}\n`;
+        }
+      } else {
+        body += `DEVELOPMENT REQUIREMENTS:\n`;
+        body += `------------------------\n`;
+        if (data.techPreference !== 'N/A') {
+          const techNames = {
+            'aspnet-core': 'ASP.NET Core (C#)',
+            'java-spring': 'Java Spring Boot',
+            'nodejs': 'Node.js',
+            'no-preference': 'No preference (recommend best fit)'
+          };
+          body += `Technology Stack: ${techNames[data.techPreference] || data.techPreference}\n`;
+        }
+        if (data.projectScale !== 'N/A') {
+          body += `Project Scale: ${data.projectScale}\n`;
+        }
+        if (data.features.length > 0) {
+          body += `Required Features: ${data.features.join(', ')}\n`;
+        }
+      }
+      
+      body += `\nPROJECT DETAILS:\n`;
+      body += `---------------\n`;
+      body += `Timeline: ${data.timeline}\n`;
+      body += `Budget Range: ${data.budget}\n\n`;
+      
+      body += `PROJECT DESCRIPTION:\n`;
+      body += `-------------------\n`;
+      body += `${data.description}\n\n`;
+      
+      body += `==========================================\n`;
+      body += `Please respond with detailed quote and timeline.\n`;
+      body += `Client contact: ${data.email}\n`;
+      body += `==========================================`;
+      
+      return body;
+    }
+
+    // Load existing submissions from localStorage
+    const existingSubmissions = localStorage.getItem('apiServiceInquiries');
+    if (existingSubmissions) {
+      submissionLog.push(...JSON.parse(existingSubmissions));
+    }
+
+    // Theme Toggle Functionality
+    function toggleTheme() {
+      const html = document.documentElement;
+      const themeIcon = document.getElementById('themeIcon');
+      
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      html.setAttribute('data-theme', newTheme);
+      
+      if (newTheme === 'dark') {
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Get user's preferred theme
+    function getPreferredTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        return savedTheme;
+      }
+      
+      // Check user's system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'dark' : 'light';
+    }
+
+    // Apply theme
+    function applyTheme(theme) {
+      const themeIcon = document.getElementById('themeIcon');
+      document.documentElement.setAttribute('data-theme', theme);
+      
+      if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+      } else {
+        themeIcon.textContent = '🌙';
+      }
+    }
+
+    // Load preferred theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const preferredTheme = getPreferredTheme();
+      applyTheme(preferredTheme);
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      // Only apply system theme change if user hasn't manually set a preference
+      const savedTheme = localStorage.getItem('theme');
+      if (!savedTheme) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        applyTheme(newTheme);
+      }
+    });
+  </script>
+</body>
+
+</html>

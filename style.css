@@ -253,6 +253,31 @@ h3 {
   border-radius: 8px;
 }
 
+/* Clickable Service Card */
+.service-card.clickable-service {
+  cursor: pointer;
+  position: relative;
+}
+
+.service-card.clickable-service:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(42, 221, 137, 0.3);
+  border-color: var(--accent);
+}
+
+.service-card .service-cta {
+  margin-top: 12px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card.clickable-service:hover .service-cta {
+  opacity: 1;
+}
+
 .portfolio-list,
 .featured-list {
   display: flex;
