@@ -313,5 +313,24 @@ window.siteData = {
         primaryLink: "https://calendly.com/witshells/30min",
         secondary: "Get a Project Quote",
         secondaryLink: "mailto:sayedsulaiman607@gmail.com?subject=Project%20Quote%20Request"
+    },
+
+    clients: {
+        title: "Companies We Work With",
+        subtitle: "Proud to collaborate with forward-thinking companies",
+        items: [
+            {
+                name: "Phoenix Technologies",
+                logo: "images/phoenix-icon.png",
+                url: "https://www.phoenixtechnologies.co/",
+                description: "A software development company delivering custom IT solutions, web & mobile applications, and enterprise software tailored to diverse business needs."
+            },
+            {
+                name: "NexSkill",
+                logo: "images/nexskill logo.webp",
+                url: "https://www.nexskill.com/",
+                description: "A tech skills development and hiring platform focused on bridging the gap between companies and skilled software professionals across Pakistan and beyond."
+            }
+        ]
     }
 };
