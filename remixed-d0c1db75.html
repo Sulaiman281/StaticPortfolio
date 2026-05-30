@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WitShells Studio — Simulate. Adapt. Advance.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #4ade80;
+    --green-dim: #22c55e;
+    --green-glow: rgba(74, 222, 128, 0.15);
+    --green-glow-strong: rgba(74, 222, 128, 0.3);
+    --bg: #080808;
+    --bg-2: #0f0f0f;
+    --bg-3: #141414;
+    --bg-card: #111111;
+    --border: rgba(74, 222, 128, 0.12);
+    --border-bright: rgba(74, 222, 128, 0.35);
+    --text: #f0f0f0;
+    --text-dim: #888;
+    --text-muted: #555;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(74,222,128,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 32px; height: 32px; }
+  .nav-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo-text span { color: var(--green); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--green);
+    padding: 0.6rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover {
+    background: #6ee7a0;
+    box-shadow: 0 0 20px var(--green-glow-strong);
+  }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,222,128,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(74,222,128,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero-headline .accent {
+    color: var(--green);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--green);
+    padding: 1rem 2.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: none;
+  }
+  .btn-primary:hover {
+    background: #6ee7a0;
+    box-shadow: 0 0 30px var(--green-glow-strong);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-bright);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: none;
+  }
+  .btn-ghost:hover { color: var(--green); border-color: var(--green); }
+
+  .hero-stats {
+    display: flex;
+    gap: 4rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1s;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--green); }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.5s;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--green), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Section base */
+  section { padding: 8rem 4rem; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    max-width: 700px;
+  }
+  .section-title .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--green);
+  }
+
+  /* Marquee */
+  .marquee-strip {
+    background: var(--green);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-inner span {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+  }
+  .marquee-inner .dot {
+    color: rgba(8,8,8,0.4);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* What we build */
+  #services { background: var(--bg-2); }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+  .services-desc {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--text-dim);
+    align-self: end;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: #141414; }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-number {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .service-desc {
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+  }
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--border-bright);
+    padding: 0.25rem 0.6rem;
+    border-radius: 1px;
+  }
+
+  /* Projects */
+  #work { background: var(--bg); }
+
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .project-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+  }
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, var(--green-glow), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .project-card:hover::after { opacity: 1; }
+
+  .project-category {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .project-category::before {
+    content: '';
+    width: 12px; height: 1px;
+    background: var(--green);
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .project-name.large {
+    font-size: 2.2rem;
+  }
+
+  .project-desc {
+    font-size: 0.8rem;
+    line-height: 1.85;
+    color: var(--text-dim);
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .project-client {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .project-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.6rem; }
+
+  .project-visual {
+    background: linear-gradient(135deg, #0f1f14, #0a1a10);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(74,222,128,0.12), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(74,222,128,0.06), transparent 50%);
+  }
+
+  /* Team */
+  #team { background: var(--bg-2); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .team-card:hover { border-color: var(--border-bright); }
+
+  .team-avatar {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #0f2a1a, #1a3d24);
+    border: 2px solid var(--border-bright);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .team-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .team-role {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1.2rem;
+  }
+  .team-bio {
+    font-size: 0.78rem;
+    line-height: 1.85;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+  .team-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  /* Industries */
+  #industries { background: var(--bg); }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 4rem;
+  }
+
+  .industry-item {
+    background: var(--bg-card);
+    padding: 3rem 2.5rem;
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .industry-item:hover {
+    background: #111;
+    border-left-color: var(--green);
+  }
+  .industry-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(74,222,128,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+  .industry-item:hover .industry-num { color: rgba(74,222,128,0.25); }
+  .industry-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .industry-desc {
+    font-size: 0.75rem;
+    line-height: 1.75;
+    color: var(--text-dim);
+  }
+
+  /* Testimonials */
+  #reviews { background: var(--bg-2); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+  .review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+  }
+  .review-stars {
+    color: var(--green);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .review-text {
+    font-size: 0.78rem;
+    line-height: 1.85;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .review-author {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .review-platform {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* CTA */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(74,222,128,0.1), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .cta-title .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--green);
+  }
+  .cta-sub {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .cta-email {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2rem;
+    letter-spacing: 0.05em;
+  }
+  .cta-email a { color: var(--green); text-decoration: none; }
+
+  /* Footer */
+  footer {
+    background: var(--bg-2);
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .footer-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .footer-logo-text span { color: var(--green); }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--green); }
+
+  /* Mobile nav toggle */
+  .nav-toggle { display: none; }
+
+  /* Intersection observer animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    #hero { padding: 8rem 2rem 4rem; }
+    .hero-headline { font-size: clamp(2.5rem, 10vw, 4rem); }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .project-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .work-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 421 421" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M210 20 C100 20 40 100 40 200 C40 310 120 390 210 400 C300 390 380 310 380 200 C380 100 320 20 210 20Z" stroke="#4ade80" stroke-width="22" fill="none"/>
+      <line x1="210" y1="80" x2="210" y2="270" stroke="#4ade80" stroke-width="22" stroke-linecap="round"/>
+      <line x1="150" y1="100" x2="130" y2="270" stroke="#4ade80" stroke-width="22" stroke-linecap="round"/>
+      <line x1="270" y1="100" x2="290" y2="270" stroke="#4ade80" stroke-width="22" stroke-linecap="round"/>
+      <line x1="165" y1="310" x2="255" y2="310" stroke="#4ade80" stroke-width="18" stroke-linecap="round"/>
+      <line x1="175" y1="338" x2="245" y2="338" stroke="#4ade80" stroke-width="16" stroke-linecap="round"/>
+      <line x1="183" y1="363" x2="237" y2="363" stroke="#4ade80" stroke-width="14" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-logo-text">Wit<span>Shells</span> Studio</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="mailto:studio@witshells.com" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag">WitShells Studio &nbsp;·&nbsp; Est. Pakistan &nbsp;·&nbsp; Serving Globally</div>
+
+  <h1 class="hero-headline">
+    Simulate.<br>
+    <span class="accent">Adapt.</span><br>
+    Advance.
+  </h1>
+
+  <p class="hero-sub">
+    We build immersive simulations, training systems, and interactive experiences that close the gap between knowledge and real-world readiness. Defence. EdTech. Games.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#work" class="btn-primary">See Our Work</a>
+    <a href="mailto:studio@witshells.com" class="btn-ghost">Start a project →</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">7<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5<span>★</span></div>
+      <div class="stat-label">Upwork Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4<span>.3★</span></div>
+      <div class="stat-label">Fiverr Rating</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Unity3D</span><span class="dot">✦</span>
+    <span>VR / AR Training</span><span class="dot">✦</span>
+    <span>Military Simulations</span><span class="dot">✦</span>
+    <span>EdTech K-12</span><span class="dot">✦</span>
+    <span>Multiplayer Games</span><span class="dot">✦</span>
+    <span>Child Safety Tech</span><span class="dot">✦</span>
+    <span>ASP.NET Core</span><span class="dot">✦</span>
+    <span>WebGL Delivery</span><span class="dot">✦</span>
+    <span>Unity3D</span><span class="dot">✦</span>
+    <span>VR / AR Training</span><span class="dot">✦</span>
+    <span>Military Simulations</span><span class="dot">✦</span>
+    <span>EdTech K-12</span><span class="dot">✦</span>
+    <span>Multiplayer Games</span><span class="dot">✦</span>
+    <span>Child Safety Tech</span><span class="dot">✦</span>
+    <span>ASP.NET Core</span><span class="dot">✦</span>
+    <span>WebGL Delivery</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- Services -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label reveal">What We Build</div>
+      <h2 class="section-title reveal">Serious tech<br>for <span class="it">serious</span><br>purposes.</h2>
+    </div>
+    <p class="services-desc reveal">We don't build everything. We build three things exceptionally well — immersive simulations for defence and training, interactive educational experiences for K-12 and institutions, and competitive multiplayer games and developer tools.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-number">01 / 05</div>
+      <span class="service-icon">🎯</span>
+      <div class="service-name">Defence & Professional Training Simulations</div>
+      <p class="service-desc">Military-grade tactical simulation systems, war planning environments, and training tools built for real operational use. Hardware-integrated, scenario-based, designed for armed forces and defence institutions.</p>
+      <div class="service-tags">
+        <span class="tag">Unity3D</span>
+        <span class="tag">Kinect</span>
+        <span class="tag">Real-time Sync</span>
+        <span class="tag">Tablet Deploy</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-number">02 / 05</div>
+      <span class="service-icon">🌍</span>
+      <div class="service-name">EdTech & Awareness Simulations</div>
+      <p class="service-desc">Interactive learning environments for K-12 and institutional education. Climate simulations, child safety awareness tools, and student assessment labs that make critical knowledge experiential.</p>
+      <div class="service-tags">
+        <span class="tag">VR / XR</span>
+        <span class="tag">Oculus Quest</span>
+        <span class="tag">WebGL</span>
+        <span class="tag">K-12</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-number">03 / 05</div>
+      <span class="service-icon">🎮</span>
+      <div class="service-name">Multiplayer Games & Developer Tools</div>
+      <p class="service-desc">Competitive real-time multiplayer games, Unity3D open-source packages (WitClientApi, Thread Manager, design patterns), and scalable backends that other developers actually want to use.</p>
+      <div class="service-tags">
+        <span class="tag">Netcode</span>
+        <span class="tag">Mirror</span>
+        <span class="tag">Photon</span>
+        <span class="tag">Open Source</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-number">04 / 05</div>
+      <span class="service-icon">⚡</span>
+      <div class="service-name">AI Integration & Intelligent Systems</div>
+      <p class="service-desc">LLM and MCP-powered intelligence wired into your existing Unity game or simulation. Smart NPCs, adaptive training feedback, autonomous game logic — no rebuild required.</p>
+      <div class="service-tags">
+        <span class="tag">LLM</span>
+        <span class="tag">MCP</span>
+        <span class="tag">AI NPCs</span>
+        <span class="tag">Smart Feedback</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-4">
+      <div class="service-number">05 / 05</div>
+      <span class="service-icon">🔧</span>
+      <div class="service-name">Backend & Full-Stack Systems</div>
+      <p class="service-desc">ASP.NET Core / Spring Boot microservices, JWT auth, PostgreSQL / MongoDB, Redis, Docker, AWS — full-stack web systems and scalable APIs for startups and enterprise clients in the UK, Dubai, Ireland, and beyond.</p>
+      <div class="service-tags">
+        <span class="tag">ASP.NET</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Docker</span>
+        <span class="tag">React</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work">
+  <div class="work-header">
+    <div>
+      <div class="section-label reveal">Selected Work</div>
+      <h2 class="section-title reveal">Real projects.<br><span class="it">Real outcomes.</span></h2>
+    </div>
+    <a href="https://www.fiverr.com/s/Q7zyqqP" target="_blank" class="btn-ghost reveal">See all 50+ projects →</a>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="project-card featured reveal">
+      <div>
+        <div class="project-category">Defence · Real-Time Simulation</div>
+        <h3 class="project-name large">Military Tactical Simulation System</h3>
+        <p class="project-desc">Real-time collaborative planning platform for military teams on Samsung S25 tablets. Offline satellite maps, 3D model and tactical symbol placement, and a physical sandbox where 4× Xbox Kinect depth sensors feed Unity to generate live terrain with projection overlay. ASP.NET Core backend on Mac Mini M4 handles sync, storage, and remote APK distribution.</p>
+        <div class="project-meta">
+          <span class="project-client">Client: Phoenix Technologies · Gujranwala Cantt</span>
+          <span class="project-link">NDA — Enterprise Contract ↗</span>
+        </div>
+      </div>
+      <div class="project-visual">🪖</div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-category">EdTech · VR Simulation</div>
+      <h3 class="project-name">Climate Change VR — Grade 9</h3>
+      <p class="project-desc">Multi-module VR for Grade 9 students covering Arctic, Maldives, Amazon, and Australia. Feel–Understand–Decide framework with AI guide, trade-off decisions, and a collaborative Action Lab. Designed to hit 100% exam pass rate.</p>
+      <div class="project-meta">
+        <span class="project-client">Client: Kuwait University</span>
+        <span class="project-link">VR Educational ↗</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-category">Child Safety · Awareness Simulation</div>
+      <h3 class="project-name">RescuedVR</h3>
+      <p class="project-desc">A simulation where children safely experience how grooming and trafficking manipulation unfolds through social media — building protective awareness before real-world exposure. Designed for schools, NGOs, and child protection programs.</p>
+      <div class="project-meta">
+        <span class="project-client">Purpose-Built Product</span>
+        <span class="project-link">Child Safety Tech ↗</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-category">EdTech · History VR</div>
+      <h3 class="project-name">Egypt VR — Ancient History</h3>
+      <p class="project-desc">Immersive VR application teaching ancient Egyptian history. Users explored landmarks, learned cultural significance, and physically constructed pyramids and monuments. Structured lessons balanced with hands-on activity.</p>
+      <div class="project-meta">
+        <span class="project-client">Client: Kuwait University</span>
+        <span class="project-link">VR Experience ↗</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-category">Multiplayer · Game Jam</div>
+      <h3 class="project-name">Marduga</h3>
+      <p class="project-desc">1v1 competitive car combat game. Players enter with bare chassis and race to build their war machine from pickup modules across a hexagonal industrial arena. Live on Wavedash.</p>
+      <div class="project-meta">
+        <span class="project-client">WitShells Original · Game Jam</span>
+        <a href="https://wavedash.com/games/marduga" target="_blank" class="project-link">Play Live ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-category">Platform · Own Product</div>
+      <h3 class="project-name">WitCoin Platform</h3>
+      <p class="project-desc">Sponsor-funded competitive gaming platform. Players mine free WitCoin, stake it in skill matches — chess, racing, and more. Real money prize pools funded by sponsors, paid directly to winners. Live on Android.</p>
+      <div class="project-meta">
+        <span class="project-client">WitShells IP · Open to Sponsors</span>
+        <a href="https://witcoin.witshells.com/" target="_blank" class="project-link">View Platform ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Industries -->
+<section id="industries">
+  <div class="section-label reveal">Verticals</div>
+  <h2 class="section-title reveal">Where we <span class="it">operate.</span></h2>
+
+  <div class="industries-grid">
+    <div class="industry-item reveal">
+      <div class="industry-num">01</div>
+      <div class="industry-name">Defence & Security</div>
+      <p class="industry-desc">Tactical simulation, war planning systems, and training tools for armed forces and defence institutions. Built for real operational environments.</p>
+    </div>
+    <div class="industry-item reveal reveal-delay-1">
+      <div class="industry-num">02</div>
+      <div class="industry-name">EdTech & K-12</div>
+      <p class="industry-desc">Climate science, history, and STEM simulations for schools and universities. Designed to make abstract knowledge visceral and measurable.</p>
+    </div>
+    <div class="industry-item reveal reveal-delay-2">
+      <div class="industry-num">03</div>
+      <div class="industry-name">Child Safety & Social Impact</div>
+      <p class="industry-desc">Awareness simulations that prepare children for real-world dangers — grooming, trafficking, manipulation — before exposure happens.</p>
+    </div>
+    <div class="industry-item reveal">
+      <div class="industry-num">04</div>
+      <div class="industry-name">Gaming & Entertainment</div>
+      <p class="industry-desc">Competitive multiplayer games, metaverse experiences, and sport simulations for global audiences. Shipped and live.</p>
+    </div>
+    <div class="industry-item reveal reveal-delay-1">
+      <div class="industry-num">05</div>
+      <div class="industry-name">Corporate Training</div>
+      <p class="industry-desc">VR rehearsal apps, procedural training, and scenario-based learning for safety, compliance, and professional development.</p>
+    </div>
+    <div class="industry-item reveal reveal-delay-2">
+      <div class="industry-num">06</div>
+      <div class="industry-name">Web & Enterprise Software</div>
+      <p class="industry-desc">Full-stack web platforms, microservice backends, and frontend systems for startups and enterprise clients across the UK, UAE, and Ireland.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section id="team">
+  <div class="section-label reveal">The Studio</div>
+  <h2 class="section-title reveal">Two builders.<br><span class="it">One vision.</span></h2>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">⚙️</div>
+      <div class="team-name">Syed Suleman Shah</div>
+      <div class="team-role">Co-Founder · CTO · Unity & VR Engineer</div>
+      <p class="team-bio">7+ years building multiplayer games, military training simulations, and VR educational experiences. Has shipped 50+ projects with 4.3–5★ ratings. Built military tactical systems for Pakistan Armed Forces, K-12 climate VR for Kuwait University, and child safety tools. Creator of WitClientApi and Thread Manager — open-source Unity packages used by developers worldwide. Currently contracted as Senior Real-Time Simulation Engineer at Phoenix Technologies.</p>
+      <div class="team-skills">
+        <span class="tag">Unity3D</span>
+        <span class="tag">VR / XR</span>
+        <span class="tag">Netcode</span>
+        <span class="tag">ASP.NET Core</span>
+        <span class="tag">Java Spring</span>
+        <span class="tag">AWS</span>
+        <span class="tag">AI / LLM</span>
+      </div>
+    </div>
+
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-avatar">💻</div>
+      <div class="team-name">Naima Ghulam Muhammad</div>
+      <div class="team-role">Co-Founder · CEO · Full-Stack Architect</div>
+      <p class="team-bio">Frontend Lead and full-stack architect currently serving at Mingo.com. Has delivered production systems for clients across the UK, Dubai, and Ireland. At WitShells Studio, leads client strategy, business development, product architecture, and government procurement. Bridges the gap between deep technical capability and market opportunity — the strategic voice of the studio.</p>
+      <div class="team-skills">
+        <span class="tag">React / Next.js</span>
+        <span class="tag">Frontend Architecture</span>
+        <span class="tag">MERN Stack</span>
+        <span class="tag">Product Strategy</span>
+        <span class="tag">Client Management</span>
+        <span class="tag">Business Dev</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews">
+  <div class="section-label reveal">Client Feedback</div>
+  <h2 class="section-title reveal">What clients <span class="it">say.</span></h2>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-platform">Fiverr ★★★★★</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Amazing seller. If you need help I promise you this is the man to ask — accommodated a shifting timeline and delivered with a level of professionalism that is rarely found on Fiverr. Would repeat without hesitation."</p>
+      <div class="review-author">adnan1160 · Verified</div>
+    </div>
+
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-platform">Fiverr ★★★★★</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Exceptional work! Delivered ahead of schedule with outstanding quality. Communication was clear and professional throughout. Highly recommend for anyone seeking top-notch results. Will definitely hire again!"</p>
+      <div class="review-author">khalid · Verified</div>
+    </div>
+
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-platform">Fiverr ★★★★★</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I want to personally thank Mr. Syed for his exceptional expertise in REST APIs. Having had the pleasure of working with him on two projects — I can attest to his remarkable dedication and hard work. Highly recommended."</p>
+      <div class="review-author">asad orabic · Verified</div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap;" class="reveal">
+    <a href="https://www.fiverr.com/s/Q7zyqqP" target="_blank" class="btn-ghost">50 reviews on Fiverr →</a>
+    <a href="https://www.upwork.com/freelancers/~01c772b1ea5a88ed4f" target="_blank" class="btn-ghost">5★ on Upwork →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="section-label reveal" style="justify-content:center;">Ready to Build?</div>
+    <h2 class="cta-title reveal">Let's make<br>something <span class="it">real.</span></h2>
+    <p class="cta-sub reveal">Whether it's a defence simulation, an educational VR experience,<br>a multiplayer game, or a full-stack platform — we're open.</p>
+    <div class="cta-actions reveal">
+      <a href="https://calendly.com/witshells/30min" target="_blank" class="btn-primary">Book a Free Call</a>
+      <a href="mailto:studio@witshells.com" class="btn-ghost">studio@witshells.com →</a>
+    </div>
+    <p class="cta-email reveal">Or reach us directly: <a href="mailto:studio@witshells.com">studio@witshells.com</a> &nbsp;·&nbsp; <a href="https://wa.me/9203093023289">WhatsApp</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <a href="#hero" class="footer-logo">
+    <span class="footer-logo-text">Wit<span>Shells</span> Studio</span>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="https://www.linkedin.com/company/witshells-studio/" target="_blank">LinkedIn</a></li>
+    <li><a href="https://medium.com/@sayedsulaiman607" target="_blank">Medium</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 WitShells Studio (SMC-Private) Limited · Registered in Pakistan</p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .service-card, .project-card, .industry-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px';
+      cursor.style.height = '20px';
+      ring.style.width = '52px';
+      ring.style.height = '52px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+    });
+  });
+
+  // Intersection observer for reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

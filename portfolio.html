@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — WitShells Studio | 50+ Shipped Projects</title>
+  <meta name="description" content="Browse WitShells Studio's portfolio: multiplayer games, VR/AR simulations, enterprise platforms, and more — all shipped to production." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://witshells.com/portfolio.html" />
+  <link rel="stylesheet" href="style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W63VJ0EKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6W63VJ0EKB');
+  </script>
+</head>
+<body>
+
+<!-- Cookie Consent Banner -->
+<div id="ws-cookie-banner" role="alert" aria-live="polite">
+  <span>We use cookies to improve your experience. <a href="privacy-policy.html">Privacy Policy</a></span>
+  <button id="ws-cookie-ok" type="button">Accept</button>
+</div>
+
+<!-- Navigation -->
+<nav class="main-nav" id="main-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="WitShells Studio home">
+      <img src="images/witshells.png" alt="" class="nav-logo-img" />
+      <span class="nav-logo-text"><span class="logo-wit">Wit</span><span class="logo-shells">Shells</span></span>
+    </a>
+    <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="portfolio.html" class="nav-cta">Portfolio</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="portfolio-page-header ws-fade">
+  <h1>Our <span class="accent-text">Work</span></h1>
+  <p>50+ shipped projects across game development, VR/AR, enterprise software, and more. A selection is shown below — many remain under NDA.</p>
+</div>
+
+<!-- Filter + Grid -->
+<section class="section ws-fade">
+  <div class="container">
+
+    <div class="work-filter-wrap" role="group" aria-label="Filter projects by category">
+      <button class="work-filter-btn active" onclick="filterWork('all', this)" type="button">All</button>
+      <button class="work-filter-btn" onclick="filterWork('multiplayer', this)" type="button">Multiplayer</button>
+      <button class="work-filter-btn" onclick="filterWork('simulation', this)" type="button">Simulation</button>
+      <button class="work-filter-btn" onclick="filterWork('vr', this)" type="button">VR / AR</button>
+      <button class="work-filter-btn" onclick="filterWork('backend', this)" type="button">Backend</button>
+      <button class="work-filter-btn" onclick="filterWork('training', this)" type="button">Training</button>
+      <button class="work-filter-btn" onclick="filterWork('product', this)" type="button">Products</button>
+    </div>
+
+    <div class="work-grid" id="work-grid">
+
+      <!-- 1. WheelToWin -->
+      <article class="work-card" data-tags="multiplayer,backend">
+        <div class="work-media">
+          <iframe
+            src="https://www.youtube.com/embed/YtBDpJvD68A"
+            title="WheelToWin Car Racing Game"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-multiplayer">Multiplayer</span>
+            <span class="tag tag-backend">Backend</span>
+          </div>
+          <h2 class="work-title">WheelToWin — Car Racing Game</h2>
+          <p class="work-desc">Real-time multiplayer car racing game built in Unity with Photon PUN. Features custom backend for player accounts, leaderboards, matchmaking, in-game economy, and race history analytics.</p>
+          <a href="https://www.youtube.com/watch?v=YtBDpJvD68A" class="work-link" target="_blank" rel="noopener noreferrer">Watch Gameplay &#8599;</a>
+        </div>
+      </article>
+
+      <!-- 2. WitShells Platform -->
+      <article class="work-card" data-tags="multiplayer,backend,product">
+        <div class="work-media work-placeholder" aria-label="WitShells Platform">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#127918;</span>
+            <span class="placeholder-text">Live Product</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-product">Own Product</span>
+            <span class="tag tag-multiplayer">Multiplayer</span>
+            <span class="tag tag-backend">Backend</span>
+          </div>
+          <h2 class="work-title">WitShells — Competitive Gaming Platform</h2>
+          <p class="work-desc">Sponsor-funded competitive gaming platform with an in-game economy powered by WitCoin. Includes live leaderboards, tournament brackets, reward distribution, and a published Android application.</p>
+          <a href="https://witcoin.witshells.com" class="work-link" target="_blank" rel="noopener noreferrer">Visit Platform &#8599;</a>
+          <a href="https://play.google.com/store/apps/details?id=com.witshells.app" class="work-link" style="margin-left:12px" target="_blank" rel="noopener noreferrer">Google Play &#8599;</a>
+        </div>
+      </article>
+
+      <!-- 3. VR Engager -->
+      <article class="work-card" data-tags="vr,simulation">
+        <div class="work-media">
+          <iframe
+            src="https://www.youtube.com/embed/b5EpoeN5gRg"
+            title="VR Engager Presentation Trainer"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-vr">VR</span>
+            <span class="tag tag-simulation">Simulation</span>
+          </div>
+          <h2 class="work-title">VR Engager — Presentation Trainer</h2>
+          <p class="work-desc">A virtual reality application that recreates authentic presentation environments — from boardrooms to lecture halls. Users practise public speaking with AI audience reactions, eye contact tracking, and performance scoring.</p>
+          <a href="https://www.youtube.com/watch?v=b5EpoeN5gRg" class="work-link" target="_blank" rel="noopener noreferrer">Watch Demo &#8599;</a>
+        </div>
+      </article>
+
+      <!-- 4. VR Projects Collection -->
+      <article class="work-card" data-tags="vr,simulation">
+        <div class="work-media">
+          <iframe
+            src="https://www.youtube.com/embed/EdOzFLrSztA"
+            title="VR Projects 6-Month Collection"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-vr">VR</span>
+            <span class="tag tag-simulation">Simulation</span>
+          </div>
+          <h2 class="work-title">VR Projects — 6-Month Collection</h2>
+          <p class="work-desc">A compilation reel of virtual reality experiences built over six months — covering architectural walkthroughs, educational environments, interactive product demos, and spatial UI prototypes.</p>
+          <a href="https://www.youtube.com/watch?v=EdOzFLrSztA" class="work-link" target="_blank" rel="noopener noreferrer">Watch Reel &#8599;</a>
+        </div>
+      </article>
+
+      <!-- 5. Military Simulation — NDA -->
+      <article class="work-card" data-tags="simulation,multiplayer,backend">
+        <div class="work-media work-placeholder" aria-label="Military Simulation — NDA">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#128274;</span>
+            <span class="placeholder-text">NDA — Confidential</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-simulation">Simulation</span>
+            <span class="tag tag-multiplayer">Multiplayer</span>
+            <span class="tag tag-backend">Backend</span>
+          </div>
+          <h2 class="work-title">Military Tactical Simulation System</h2>
+          <p class="work-desc">NDA-bound tactical simulation system built for defence training. Real-time multiplayer coordination with team role mechanics, mission scripting, and a command-level analytics dashboard. Client: Confidential.</p>
+          <span class="work-link work-link-muted">Under NDA — details withheld</span>
+        </div>
+      </article>
+
+      <!-- 6. VR Educational — Mixeal -->
+      <article class="work-card" data-tags="vr,simulation,training">
+        <div class="work-media work-placeholder" aria-label="VR Educational Experience — NDA">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#127979;</span>
+            <span class="placeholder-text">NDA — Confidential</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-vr">VR</span>
+            <span class="tag tag-simulation">Simulation</span>
+            <span class="tag tag-training">Training</span>
+          </div>
+          <h2 class="work-title">VR Educational Experience — Mixeal</h2>
+          <p class="work-desc">Immersive VR training environment developed for Mixeal's institutional clients. Covers safety training, procedural skill-building, and assessment. Delivered for deployment across multiple facilities.</p>
+          <span class="work-link work-link-muted">Under NDA — client: Mixeal</span>
+        </div>
+      </article>
+
+      <!-- 7. Metaverse Football — Mixeal -->
+      <article class="work-card" data-tags="multiplayer,simulation">
+        <div class="work-media work-placeholder" aria-label="Metaverse Football — NDA">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#9917;</span>
+            <span class="placeholder-text">NDA — Confidential</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-multiplayer">Multiplayer</span>
+            <span class="tag tag-simulation">Simulation</span>
+          </div>
+          <h2 class="work-title">Metaverse Football — Android Game</h2>
+          <p class="work-desc">A metaverse-style multiplayer football game for Android developed for Mixeal. Features avatar customisation, real-time match rooms, and in-game rewards tied to a virtual economy.</p>
+          <span class="work-link work-link-muted">Under NDA — client: Mixeal</span>
+        </div>
+      </article>
+
+      <!-- 8. Egypt VR -->
+      <article class="work-card" data-tags="vr,simulation,training">
+        <div class="work-media work-placeholder" aria-label="Egypt VR Educational History">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#127981;</span>
+            <span class="placeholder-text">Screenshot pending</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-vr">VR</span>
+            <span class="tag tag-simulation">Simulation</span>
+            <span class="tag tag-training">Training</span>
+          </div>
+          <h2 class="work-title">Egypt VR — Educational History Experience</h2>
+          <p class="work-desc">A fully interactive VR tour of ancient Egypt built for educational use. Students explore reconstructed environments — pyramids, markets, temples — with guided narration and interactive artefact discovery.</p>
+          <span class="work-link work-link-muted">Screenshot coming soon</span>
+        </div>
+      </article>
+
+      <!-- 9. Climate Change VR -->
+      <article class="work-card" data-tags="vr,simulation,training">
+        <div class="work-media work-placeholder" aria-label="Climate Change VR Simulation">
+          <div class="placeholder-inner">
+            <span class="placeholder-icon">&#127758;</span>
+            <span class="placeholder-text">Screenshot pending</span>
+          </div>
+        </div>
+        <div class="work-body">
+          <div class="work-tags">
+            <span class="tag tag-vr">VR</span>
+            <span class="tag tag-simulation">Simulation</span>
+            <span class="tag tag-training">Training</span>
+          </div>
+          <h2 class="work-title">Climate Change VR — Grade 9 World Simulation</h2>
+          <p class="work-desc">An immersive VR simulation designed for Grade 9 students, visualising the real-world impact of climate change at a global scale. Students make choices and observe cascading consequences across ecosystems.</p>
+          <span class="work-link work-link-muted">Screenshot coming soon</span>
+        </div>
+      </article>
+
+    </div><!-- /work-grid -->
+
+    <div class="work-more-wrap" style="text-align:center;margin-top:2.5rem">
+      <p style="color:var(--text2);margin-bottom:1rem;font-size:0.9em">The projects above are a small selection. Many others remain under NDA or are not yet publicly released.</p>
+      <a href="https://www.fiverr.com/witshells" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">See All 50+ Projects on Fiverr &#8599;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <a class="nav-logo" href="index.html" style="text-decoration:none">
+      <span class="logo-wit">Wit</span><span class="logo-shells">Shells</span>
+    </a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="products.html">Products</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/witshells" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/witshells" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <p class="footer-legal">
+      &copy; <span id="footer-year"></span> WITSHELLS STUDIO (SMC-PRIVATE) LIMITED &nbsp;&middot;&nbsp; Registered under Companies Act 2017 &nbsp;&middot;&nbsp; Sindh, Pakistan
+    </p>
+  </div>
+</footer>
+
+<div class="cursor-rect" id="cursor-rect" aria-hidden="true"></div>
+<script src="gamification.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Cursor rect
+  var cr = document.getElementById('cursor-rect');
+  if (cr && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      cr.style.left = (e.clientX - 16) + 'px';
+      cr.style.top = (e.clientY - 16) + 'px';
+    });
+  }
+
+  // Filter function
+  function filterWork(tag, btn) {
+    // Update active button
+    document.querySelectorAll('.work-filter-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+
+    // Show/hide cards
+    document.querySelectorAll('#work-grid .work-card').forEach(function(card) {
+      if (tag === 'all') {
+        card.style.display = '';
+      } else {
+        var tags = (card.getAttribute('data-tags') || '').split(',');
+        card.style.display = tags.indexOf(tag) !== -1 ? '' : 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>

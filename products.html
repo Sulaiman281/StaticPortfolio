@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — WitShells Studio | Our Technology Ecosystem</title>
+  <meta name="description" content="WitShells Studio is building its own technology product ecosystem — software and platforms designed for Pakistan, built to scale globally." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://witshells.com/products.html" />
+  <link rel="stylesheet" href="style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W63VJ0EKB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6W63VJ0EKB');
+  </script>
+</head>
+<body>
+
+<!-- Cookie Consent Banner -->
+<div id="ws-cookie-banner" role="alert" aria-live="polite">
+  <span>We use cookies to improve your experience. <a href="privacy-policy.html">Privacy Policy</a></span>
+  <button id="ws-cookie-ok" type="button">Accept</button>
+</div>
+
+<!-- Navigation -->
+<nav class="main-nav" id="main-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="WitShells Studio home">
+      <img src="images/witshells.png" alt="" class="nav-logo-img" />
+      <span class="nav-logo-text"><span class="logo-wit">Wit</span><span class="logo-shells">Shells</span></span>
+    </a>
+    <button class="nav-toggle-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="products.html" class="nav-cta">Products</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Products Hero -->
+<div class="products-page-wrap ws-fade">
+  <div class="products-page-inner">
+    <span class="products-coming-badge">Coming Soon</span>
+    <h1>Something Is <span class="accent-text">Coming</span></h1>
+    <p>We are building our product ecosystem — technology products designed for Pakistan, built to scale globally.</p>
+    <p>One product is already live: <strong style="color:var(--accent)">WitShells</strong> — a sponsor-funded competitive gaming platform with its own in-game economy powered by WitCoin, a published Android app, and an active player base. It is just the beginning.</p>
+    <p style="font-size:0.9em">Enter your email and we will notify you when the next product launches.</p>
+    <form class="notify-form" id="ws-notify-form" novalidate>
+      <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
+      <button type="submit" class="btn btn-primary">Notify Me</button>
+    </form>
+    <p class="products-notify-ok" style="display:none">&#10003; You are on the list. We will be in touch.</p>
+
+    <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+      <a href="index.html" class="btn btn-secondary">&#8592; Back to Home</a>
+      <a href="portfolio.html" class="btn btn-secondary">View Our Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <a class="nav-logo" href="index.html" style="text-decoration:none">
+      <span class="logo-wit">Wit</span><span class="logo-shells">Shells</span>
+    </a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/witshells" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/witshells" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+    <p class="footer-legal">
+      &copy; <span id="footer-year"></span> WITSHELLS STUDIO (SMC-PRIVATE) LIMITED &nbsp;&middot;&nbsp; Registered under Companies Act 2017 &nbsp;&middot;&nbsp; Sindh, Pakistan
+    </p>
+  </div>
+</footer>
+
+<div class="cursor-rect" id="cursor-rect" aria-hidden="true"></div>
+<script src="gamification.js"></script>
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+  navToggle.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Cursor rect
+  var cr = document.getElementById('cursor-rect');
+  if (cr && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      cr.style.left = (e.clientX - 16) + 'px';
+      cr.style.top = (e.clientY - 16) + 'px';
+    });
+  }
+
+  // Notify form
+  var notifyForm = document.getElementById('ws-notify-form');
+  if (notifyForm) {
+    notifyForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ok = document.querySelector('.products-notify-ok');
+      if (ok) ok.style.display = 'block';
+      var emailInput = notifyForm.querySelector('input[type="email"]');
+      if (emailInput) {
+        try {
+          var list = JSON.parse(localStorage.getItem('ws_notify') || '[]');
+          list.push({ email: emailInput.value, ts: Date.now() });
+          localStorage.setItem('ws_notify', JSON.stringify(list));
+        } catch(_) {}
+      }
+      var btn = notifyForm.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      if (window.wsEarn) window.wsEarn(100, 'notify_form');
+    });
+  }
+</script>
+</body>
+</html>
