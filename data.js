@@ -212,6 +212,7 @@ window.siteData = {
             picture: "images/naima-pic.jpg",
             role: "Blockchain & MERN Stack Developer, Co-Founder, and Wife",
             portfolio: "https://github.com/NaimaGhulamMuhammad",
+            email: "ceo@witshells.com",
             note: "My partner in life and code."
         },
     ],
@@ -258,9 +259,9 @@ window.siteData = {
             },
             {
                 type: "Email",
-                url: "mailto:sayedsulaiman607@gmail.com",
+                url: "mailto:cto@witshells.com",
                 icon: "images/icon-email.png",
-                label: "sayedsulaiman607@gmail.com"
+                label: "cto@witshells.com"
             },
             {
                 type: "Calendly",
@@ -312,7 +313,7 @@ window.siteData = {
         primary: "Book a 15‑min Call",
         primaryLink: "https://calendly.com/witshells/30min",
         secondary: "Get a Project Quote",
-        secondaryLink: "mailto:sayedsulaiman607@gmail.com?subject=Project%20Quote%20Request"
+        secondaryLink: "mailto:cto@witshells.com?subject=Project%20Quote%20Request"
     },
 
     clients: {

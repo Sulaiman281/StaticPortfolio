@@ -751,7 +751,7 @@ I'm Syed Suleman Shah, API developer with 5+ years experience specializing in Un
 For more insights, check out: https://witshells.com/api-services.html
 
 Available for interview.
-Contact: sayedsulaiman607@gmail.com
+Contact: cto@witshells.com
 ```
 
 **Action**: Respond to 2-3 queries per day
@@ -1575,7 +1575,7 @@ Add to page:
 **SEO is a marathon, not a sprint. Stay consistent, track your progress, and adjust based on data.**
 
 **Questions?** Feel free to reach out:
-- Email: sayedsulaiman607@gmail.com
+- Email: cto@witshells.com
 - LinkedIn: linkedin.com/in/syed-suleman-shah/
 
 ---

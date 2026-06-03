@@ -5,7 +5,7 @@
 # Format: advertising_system_domain, publisher_id, DIRECT|RESELLER, certification_authority_id
 
 # Optional contact for ad-tech inquiries:
-# contact=sayedsulaiman607@gmail.com
+# contact=cto@witshells.com
 
 google.com, pub-5505051331408030, DIRECT, f08c47fec0942fa0
 aralego.com, par-BE7E667E3339AD6BC7BA2887D6E7227A, RESELLER
